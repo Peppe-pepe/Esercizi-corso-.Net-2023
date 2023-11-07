@@ -1,0 +1,59 @@
+﻿1>------ Build started: Project: Calcolo RDC, Configuration: Debug ------
+1>C:\Program Files\dotnet\sdk\7.0.403\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.EolTargetFrameworks.targets(29,5): warning NETSDK1138: The target framework 'net5.0' is out of support and will not receive security updates in the future. Please refer to https://aka.ms/dotnet-core-support for more information about the support policy.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(8,10,8,10): error CS1513: } expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(11,11,11,13): error CS1519: Invalid token 'if' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(11,21,11,23): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(11,21,11,23): error CS1026: ) expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(11,21,11,23): error CS1519: Invalid token '>=' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(12,33,12,34): error CS1519: Invalid token '(' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(12,34,12,68): error CS1031: Type expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(12,34,12,68): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(12,34,12,68): error CS1026: ) expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(12,34,12,68): error CS1519: Invalid token '$" il cittadino ha diritto al RDC"' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(12,68,12,68): error CS1056: Unexpected character '$'
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(14,33,14,34): error CS1519: Invalid token '(' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(14,34,14,72): error CS1031: Type expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(14,34,14,72): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(14,34,14,72): error CS1026: ) expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(14,34,14,72): error CS1519: Invalid token '$" il cittadino non ha diritto al RDC"' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(14,72,14,72): error CS1056: Unexpected character '$'
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(30,6,30,6): error CS1513: } expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(32,6,32,8): error CS1519: Invalid token 'if' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(32,10,32,12): error CS1031: Type expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(32,10,32,12): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(32,10,32,12): error CS1026: ) expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(32,10,32,12): error CS1519: Invalid token '18' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(32,20,32,22): error CS1519: Invalid token '=>' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(32,40,32,42): error CS1519: Invalid token '||' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(32,48,32,49): error CS1519: Invalid token '>' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(33,17,33,19): error CS1519: Invalid token '+=' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(34,21,34,22): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(35,17,35,19): error CS1003: Syntax error, ',' expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(36,6,36,8): error CS1519: Invalid token 'if' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(36,27,36,28): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(36,27,36,28): error CS1026: ) expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(36,27,36,28): error CS1519: Invalid token '>' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(37,17,37,19): error CS1519: Invalid token '+=' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(38,24,38,25): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(38,24,38,25): error CS1026: ) expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(38,24,38,25): error CS1519: Invalid token '>' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(39,17,39,19): error CS1519: Invalid token '+=' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(40,17,40,18): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(40,17,40,18): error CS1026: ) expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(40,17,40,18): error CS1519: Invalid token '>' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(41,17,41,19): error CS1519: Invalid token '+=' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(42,16,42,25): error CS1031: Type expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(42,16,42,25): error CS1003: Syntax error, ',' expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(42,26,42,26): error CS1003: Syntax error, ',' expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(43,17,43,19): error CS1003: Syntax error, ',' expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(43,21,43,22): error CS1003: Syntax error, '>' expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(43,21,43,22): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(43,21,43,22): error CS1026: ) expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(43,21,43,22): error CS1519: Invalid token ';' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(44,19,44,20): error CS8124: Tuple must contain at least two elements.
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(45,17,45,19): error CS1003: Syntax error, ',' expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(46,6,46,12): error CS1519: Invalid token 'return' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(46,20,46,21): error CS1519: Invalid token ';' in class, record, struct, or interface member declaration
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(48,5,48,6): error CS1022: Type or namespace definition, or end-of-file expected
+1>C:\Users\cartp\Source\Repos\Peppe-pepe\Esercizi-corso-.Net-2023\Calcolo RDC\Program.cs(49,1,49,2): error CS1022: Type or namespace definition, or end-of-file expected
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
