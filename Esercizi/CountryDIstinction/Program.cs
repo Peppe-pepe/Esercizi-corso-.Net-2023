@@ -10,7 +10,19 @@ namespace CountryDIstinction
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            EuropeanCountry Italy = new EuropeanCountry("Italy",false,
+                true,60000000,150000000000,2000000000,true,true,true);
+            bool result = Italy.IsEuroZone(Italy);
+            if(result)
+                Console.WriteLine(Italy.Name+$" is part of the EuroZone");
+            else
+                Console.WriteLine(Italy.Name + $" is not part of the EuroZone");
+           
+            result=Italy.RespectsRights(Italy);
+            if (result)
+                Console.WriteLine(Italy.Name + $" respects human rights");
+            else
+                Console.WriteLine(Italy.Name + $" does not respect human rights");
         }
     }
 
@@ -38,13 +50,16 @@ namespace CountryDIstinction
         public double Pil { get { return _pil; } }
         public double PublicDebt { get { return _publicDebt; } }
     }
-    public interface IEuroCentralBank{
-        public decimal CalcSPread(Country c);
+    public interface IEuroCentralBank
+    {
+        public decimal CalcSPread(EuropeanCountry c);
+        public bool IsEuroZone(EuropeanCountry c);
     }
     public interface IEuropeanCourtHumanRights {
     public bool RespectsRights(Country c); 
     }
-    public class EuropeanCountry : Country, IEuropeanCourtHumanRights, IEuroCentralBank
+    public class EuropeanCountry : Country, 
+        IEuropeanCourtHumanRights, IEuroCentralBank
 {
         
         bool _isONU;
@@ -65,9 +80,16 @@ namespace CountryDIstinction
                     return true;
             return false;
         }
-    public decimal CalcSPread(Country c)
+    public decimal CalcSPread(EuropeanCountry c)
         {
             return ((decimal)(c.PublicDebt* (c.Pil* 0.01)));
+        }
+    public bool IsEuroZone(EuropeanCountry c)
+        {
+            if (IsEU && (c.PublicDebt < (c.Pil * 0.03)))
+                return true;
+            else
+                return false;
         }
     public bool IsOnu { get { return _isONU; } }
         public bool IsNato { get { return _isNATO; } }

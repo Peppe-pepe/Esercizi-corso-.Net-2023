@@ -7,17 +7,18 @@ namespace RDCalc
     {
         static void Main(string[] args)
         {
-            Student _person = new Student(
+            UniversityStudent _person = new UniversityStudent(
                 "Giuseppe",
                 "Pepe",
                 63,
                 3,
                 4000000,
                 true,
-                100
+                100,
+                28
                 );
-            Comune city = new Comune();
-            city.calcPoints(_person);
+            Comune city = new Comune("nocera");
+            city.isEligible(_person);
         }
     }
 
@@ -61,8 +62,9 @@ namespace RDCalc
         public bool IsAdult { get { return isSenior(); } }
         public decimal CityPil { get { return _cityPil; } }
         public int Age { get { return _age; } }
-        public bool IsinDebt { get { return _isInDebt; } }  
-        public int nSons {  get { return _nSons; } }    
+        public bool IsinDebt { get { return _isInDebt; } }
+        public bool WasSoldier { get { return _wasSoldier; } }
+        public int nSons { get { return _nSons; } }
         protected override bool isSenior()
         {
             if (_age > 60)
@@ -70,20 +72,8 @@ namespace RDCalc
             return false;
         }
 
-        public virtual bool isStudent() {  return false; }
-        public virtual decimal CollegeGrade()
-        {
-            return 0;
-        }
-        public virtual decimal HighSchoolGrade()
-        {
-            return 0;
-        }
 
-        public virtual bool wasSoldier()
-        {
-            return false;
-        }
+
     }
 
     public class Student : Citizien
@@ -95,7 +85,7 @@ namespace RDCalc
                 int nSons,
                 decimal cityPil,
                 bool isInDebt,
-                int HighschoolGrade) : base( Name,
+                int HighschoolGrade) : base(Name,
                 Surname,
                  Age,
                  nSons,
@@ -104,17 +94,7 @@ namespace RDCalc
         {
             _highSchoolGrade = HighschoolGrade;
         }
-        public override bool isStudent()
-        {
-            if (_highSchoolGrade != 0)
-                return true;
-            return false;
-        }
-
-        public override decimal HighSchoolGrade()
-        {
-            return _highSchoolGrade;
-        }
+        public int HighSchoolGrade{get{ return _highSchoolGrade; } }
     }
 
     public class UniversityStudent : Student
@@ -137,8 +117,9 @@ namespace RDCalc
         {
             _collegeGrade = CollegeGrade;
         }
-        public override decimal CollegeGrade() { return _collegeGrade;}
+        public decimal CollegeGrade { get { return _collegeGrade; } }
     }
+
 
     public class Soldier : Citizien
     {
@@ -157,33 +138,36 @@ namespace RDCalc
         {
             _yearsOfService = yearsOfService;
         }
-        public override bool wasSoldier()
-        {
-            if(_yearsOfService>=1)
-                return true;
-            return false;
-        }
+
     }
 
     public abstract class EntePubblico
     {
-
+        string _name;
+        public EntePubblico(string name)
+        {
+                  _name = name;
+        }
+        public abstract void isEligible(Citizien c);
     }
 
     public class Comune : EntePubblico
     {
-        public void calcPoints(Citizien c)
+        public Comune(string Nome):base(Nome) {
+        }
+        public override void isEligible(Citizien c)
         {
             decimal _points = 0; // Inizializza _points a zero
 
-            if ((18 <= c.Age && c.Age <= 25 && c.isStudent()) || c.IsAdult)
+            if ((18 <= c.Age && c.Age <= 25 && c is Student) || c.IsAdult)
                 _points += 15;
-            if (c.wasSoldier())
+            if (c is Soldier || c.WasSoldier)
                 _points += 5;
-            if (c.HighSchoolGrade() > 90)
-                _points += 1;
-            if (c.CollegeGrade() > 28)
-                _points += 1;
+            if (c is Student)
+                _points+=calcStudent((Student)c);
+                    
+            if (c is UniversityStudent)
+                _points += calcUniversityStudent((UniversityStudent)c);
             if (c.nSons > 1)
                 _points += 3;
             if (c.CityPil < 100000000)
@@ -194,6 +178,17 @@ namespace RDCalc
                 Console.WriteLine($"il cittadino ha diritto al RDC");
             else
                 Console.WriteLine($"il cittadino non ha diritto al RDC");
+             int calcStudent(Student s){
+                if (s.HighSchoolGrade>90)
+                    return 10;
+                return 0;
+            }
+            int calcUniversityStudent(UniversityStudent u)
+            {
+                if(u.CollegeGrade>28)
+                    return 10;
+                return 0;
+            }
         }
     }
 }
