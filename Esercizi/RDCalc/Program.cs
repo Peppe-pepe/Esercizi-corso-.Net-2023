@@ -39,11 +39,11 @@ namespace RDCalc
     public class Citizien : Person
     {
 
-        private int _nSons = 3;
-        private decimal _cityPil = 50000000;
-        private bool _isStudent = false;
-        private bool _isInDebt = false;
-        private bool _wasSoldier = true;
+        private int _nSons;
+        private decimal _cityPil;
+        private bool _isStudent;
+        private bool _isInDebt;
+        private bool _wasSoldier;
         public Citizien(
                 string Name,
                 string Surname,
