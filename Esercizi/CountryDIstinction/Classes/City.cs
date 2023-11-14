@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CountryDIstinction.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CountryDIstinction.Classes
 {
-    public class City
+    public class City : IAdministrativeEntity
     {
         public County province;
         public Citizien inhabitant;//placeholder for array
@@ -41,5 +42,6 @@ namespace CountryDIstinction.Classes
             province = newCounty;
 
         }
+        public void Administrate() { Console.WriteLine($"Amministro {this.Name}"); }
     }
 }

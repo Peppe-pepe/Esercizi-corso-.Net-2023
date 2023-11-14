@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CountryDIstinction.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,17 @@ using System.Threading.Tasks;
 
 namespace CountryDIstinction.Classes
 {
-    public class Region
+    public class Region : GeographicArea,IAdministrativeEntity
     {
         public Country country;
         public County province;//placeholder for array
-        string _name;
-        public Region(Country c, string Name)
+        public Region(Country c, string Name,double Area):base(Name, Area)  
         {
             country = c;
-            _name = Name;
         }
         public void AddCounty()
         {
-            province = new County(this, "placeholder");
+            province = new County(this, "placeholder",0);
         }
         public void AddCounty(County c)
         {
@@ -35,6 +34,7 @@ namespace CountryDIstinction.Classes
             newCountry.AddRegion(this);
             country = newCountry;
         }
-        public string Name { get { return _name; } }
+
+        public void Administrate() { Console.WriteLine($"Amministro il/la {this.Name}"); }
     }
 }

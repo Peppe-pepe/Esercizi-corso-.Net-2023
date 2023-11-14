@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CountryDIstinction.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CountryDIstinction.Classes
 {
-    public class EU
+    public class EU : IPoliticalOrg
     {
         string _president;//placeholder attributes until we study arrays and collection
         public EUCountry country;
@@ -16,8 +17,8 @@ namespace CountryDIstinction.Classes
         }
         public void addCountry(Country c)
         {
-            country = new EUCountry(this, c.Name, c.DeathPenalty, c.FreedomSpeech, c.Population,
-                c.Pil, c.PublicDebt, true, true);
+            country = new EUCountry(this,c.Name, c.Area, c.FreedomSpeech, c.Population,
+                c.Pil, c.PublicDebt,true,true);
         }
 
         public void RemoveMember(EUCountry c) { c = null; }
@@ -28,6 +29,10 @@ namespace CountryDIstinction.Classes
                 return true;
             else
                 return false;
+        }
+        public void Represent()
+        {
+            Console.WriteLine("Rappresento l'opinione pubblica dell'UE");
         }
     }
 }

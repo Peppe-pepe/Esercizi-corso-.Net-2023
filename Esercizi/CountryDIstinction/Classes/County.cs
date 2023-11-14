@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CountryDIstinction.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace CountryDIstinction.Classes
 {
-    public class County
+    public class County : GeographicArea,IAdministrativeEntity
     {
         public City city;//placeholder for array
         public Region region;
-        string _name;
-        public County(Region r, string name)
+        public County(Region R, string Name,double Area) : base(Name,Area)
         {
-            region = r;
-            _name = name;
+            region = R;
         }
         public void AddCity()
         {
@@ -29,12 +28,13 @@ namespace CountryDIstinction.Classes
             //to do
             city = null;
         }
-        public string Name { get { return _name; } }
         public void ChangeRegion(Region newRegion)
         {
             region.RemoveCounty(this);
             newRegion.AddCounty(this);
             region = newRegion;
         }
+
+        public void Administrate() { Console.WriteLine($"Amministro il/la {this.Name}"); }
     }
 }

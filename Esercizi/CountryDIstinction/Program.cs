@@ -13,7 +13,7 @@ namespace CountryDIstinction
         static void Main(string[] args)
         {
             EU Union= new EU("Mario Draghi"); 
-            EUCountry Italy = new EUCountry(Union,"Italy",false,
+            EUCountry Italy = new EUCountry(Union,"Italy",301.340,
                 true,60000000,150000000000,2000000000,true,true);
             bool result =Union.IsEuroZone(Italy);
             if(result)

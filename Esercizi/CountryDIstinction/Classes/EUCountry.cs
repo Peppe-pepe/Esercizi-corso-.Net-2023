@@ -15,8 +15,8 @@ namespace CountryDIstinction.Classes
         bool _isNATO;
         public EU union;
 
-        public EUCountry(EU Union, String Name, bool DeathP, bool FreedomofSpeech, double Population,
-            double Pil, double PublicDebt, bool IsONU, bool IsNato) : base(Name, DeathP, FreedomofSpeech, Population, Pil, PublicDebt)
+        public EUCountry(EU Union, String Name, double Area, bool FreedomofSpeech, double Population,
+            double Pil, double PublicDebt, bool IsONU, bool IsNato) : base(Name,Area, FreedomofSpeech, Population, Pil, PublicDebt)
         {
 
             _isONU = IsONU;
@@ -26,7 +26,7 @@ namespace CountryDIstinction.Classes
         }
         public bool RespectsRights(Country c)
         {
-            if ((!c.DeathPenalty) && c.FreedomSpeech)
+            if ((!(c is CapitalPunishmentState)) && c.FreedomSpeech)
                 return true;
             return false;
         }
