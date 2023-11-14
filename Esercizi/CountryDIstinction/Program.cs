@@ -106,6 +106,12 @@ namespace CountryDIstinction
 
     public bool IsOnu { get { return _isONU; } }
         public bool IsNato { get { return _isNATO; } }
+
+    public void ExitUnion()
+        {
+            union.RemoveMember(this);
+            //should destruct the object
+        }
         
     }
     public class NatoCountry : Country, INato
@@ -129,6 +135,7 @@ namespace CountryDIstinction
        
         public void ExitAlliance() {
             nato.RemoveMember(this);
+            //should destruct the object
         }
     }
     public class NATO {
@@ -161,7 +168,7 @@ namespace CountryDIstinction
                 c.Pil,c.PublicDebt,true,true);
         }
 
-        public void removeMember(EUCountry c) {  c = null; }
+        public void RemoveMember(EUCountry c) {  c = null; }
         
         public bool IsEuroZone(EUCountry c)
         {
