@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CountryDIstinction.Classes
 {
     public class EUCountry : Country,
-      IEuropeanCourtHumanRights, IEuroCentralBank
+      IEuropeanCourtHumanRights
     {
 
         bool _isONU;
@@ -30,12 +30,9 @@ namespace CountryDIstinction.Classes
                 return true;
             return false;
         }
-        public decimal CalcSPread(EUCountry c)
-        {
-            return ((decimal)(c.PublicDebt * (c.Pil * 0.01)));
-        }
 
-        public bool IsOnu { get { return _isONU; } }
+
+    public bool IsOnu { get { return _isONU; } }
         public bool IsNato { get { return _isNATO; } }
 
         public void ExitUnion()
@@ -44,5 +41,5 @@ namespace CountryDIstinction.Classes
             //should destruct the object
         }
 
-    }
+}
 }

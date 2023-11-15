@@ -11,6 +11,9 @@ namespace CountryDIstinction.Classes
         public City city;
         private int _nSons;
         private bool _isInDebt;
+        private string _dateOfBirth;
+        private string _gender;
+
         public Citizien(
                 City c,
                 string Name,
@@ -29,6 +32,11 @@ namespace CountryDIstinction.Classes
         public int Age { get { return _age; } }
         public bool IsinDebt { get { return _isInDebt; } }
         public int nSons { get { return _nSons; } }
+
+        public string DateOfBirth { get { return _dateOfBirth; } }
+
+        public string Gender { get {return _gender; }  }
+
         protected override bool isSenior()
         {
             if (_age > 60)

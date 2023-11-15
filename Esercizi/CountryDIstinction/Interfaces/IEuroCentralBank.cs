@@ -9,6 +9,7 @@ namespace CountryDIstinction.Interfaces
 {
     public interface IEuroCentralBank
     {
+        public void MonetaUnica();
         public decimal CalcSPread(EUCountry c);
     }
 }
