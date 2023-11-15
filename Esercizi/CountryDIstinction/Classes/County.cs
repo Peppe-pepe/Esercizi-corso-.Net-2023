@@ -17,7 +17,7 @@ namespace CountryDIstinction.Classes
         }
         public void AddCity()
         {
-            city = new City(this, "placeholder", 0, 0);
+            city = new City(this, "placeholder", 0,0, 0);
         }
         public void AddCity(City c)
         {

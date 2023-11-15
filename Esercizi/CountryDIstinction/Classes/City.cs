@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace CountryDIstinction.Classes
 {
-    public class City : IAdministrativeEntity
+    public class City : GeographicArea,IAdministrativeEntity
     {
         public County province;
         public Citizien inhabitant;//placeholder for array
         string _name;
         double _population;
         double _pil;
-        public City(County c, string Name, double Population, double Pil)
+        public City(County c, string Name,double Area,double Population, double Pil):base(Name,Area)
         {
             province = c;
-            _name = Name;
             _population = Population;
             _pil = Pil;
         }
-        public string Name { get { return _name; } }
         public void AddCitizien()
         {
             inhabitant = new Citizien(this, "place", "holder", 0, 0, false);
