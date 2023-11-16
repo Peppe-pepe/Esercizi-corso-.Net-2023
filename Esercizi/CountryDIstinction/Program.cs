@@ -12,21 +12,17 @@ namespace CountryDIstinction
     {
         static void Main(string[] args)
         {
-            EU Union= new EU("Mario Draghi"); 
-            EUCountry Italy = new EUCountry(Union,"Italy",301.340,
+            EU Union= new EU("Mario Draghi");
+            EUParliament parliament = new EUParliament(5);
+            EUCountry Italy = new EUCountry(parliament,Union,"Italy",301.340,
                 true,60000000,150000000000,2000000000,true,true);
-            bool result =Union.IsEuroZone(Italy);
-            if(result)
-                Console.WriteLine(Italy.Name+$" is part of the EuroZone");
-            else
-                Console.WriteLine(Italy.Name + $" is not part of the EuroZone");
-           
-            result=Italy.RespectsRights(Italy);
-            if (result)
-                Console.WriteLine(Italy.Name + $" respects human rights");
-            else
-                Console.WriteLine(Italy.Name + $" does not respect human rights");
+            EUCountry Germany = new EUCountry(parliament,Union, "Germany", 501.340,
+               true, 60000000, 150000000000, 2000000000, true, true);
+            EURegion Lombardia = new EURegion(parliament, Italy, "lombardia", 0);
+            Lombardia.ChangeCountry(Germany);
+
         }
+
     }
     //adding EU class,Nato,Region,Province and city
   

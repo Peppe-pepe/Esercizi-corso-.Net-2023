@@ -12,8 +12,8 @@ namespace CountryDIstinction.Classes
         public NATO nato;
         double _militaryExpense;
         int _bases;
-        public NatoCountry(NATO Nato, String Name,double Area, bool DeathP, bool FreedomofSpeech, double Population,
-            double Pil, double PublicDebt, int Bases) : base(Name,Area, DeathP, FreedomofSpeech,
+        public NatoCountry(NATO Nato, String Name,double Area, bool FreedomofSpeech, double Population,
+            double Pil, double PublicDebt, int Bases) : base(Name,Area, FreedomofSpeech,
                 Population, Pil, PublicDebt)
         {
             nato = Nato;

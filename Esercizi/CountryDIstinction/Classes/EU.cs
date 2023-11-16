@@ -11,13 +11,14 @@ namespace CountryDIstinction.Classes
     {
         string _president;//placeholder attributes until we study arrays and collection
         public EUCountry country;
+        public EUParliament parliament;
         public EU(String President)
         {
             _president = President;
         }
         public void addCountry(Country c)
         {
-            country = new EUCountry(this,c.Name, c.Area, c.FreedomSpeech, c.Population,
+            country = new EUCountry(parliament,this,c.Name, c.Area, c.FreedomSpeech, c.Population,
                 c.Pil, c.PublicDebt,true,true);
         }
 

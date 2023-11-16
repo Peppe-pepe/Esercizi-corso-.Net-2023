@@ -11,8 +11,8 @@ namespace CountryDIstinction.Classes
     {
         public ONU Organization;
         bool _hasVeto;
-        public ONUCountry(ONU Org,String Name,double Area, bool DeathP, bool FreedomofSpeech, double Population,
-            double Pil, double PublicDebt,bool veto):base(Name,Area, DeathP, FreedomofSpeech,Population,Pil,PublicDebt)
+        public ONUCountry(ONU Org,String Name,double Area, bool FreedomofSpeech, double Population,
+            double Pil, double PublicDebt,bool veto):base(Name,Area, FreedomofSpeech,Population,Pil,PublicDebt)
         {
             _hasVeto = veto;
         }

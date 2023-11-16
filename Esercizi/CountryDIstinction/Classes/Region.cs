@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CountryDIstinction.Classes
 {
-    public class Region : GeographicArea,IAdministrativeEntity
+    public class Region : GeographicArea
     {
         public Country country;
         public County province;//placeholder for array
@@ -15,7 +15,7 @@ namespace CountryDIstinction.Classes
         {
             country = c;
         }
-        public void AddCounty()
+        public virtual void  AddCounty()
         {
             province = new County(this, "placeholder",0);
         }
@@ -28,13 +28,7 @@ namespace CountryDIstinction.Classes
             //to do
             province = null;
         }
-        public void ChangeCountry(Country newCountry)
-        {
-            country.RemoveRegion(this);
-            newCountry.AddRegion(this);
-            country = newCountry;
-        }
 
-        public void Administrate() { Console.WriteLine($"Amministro il/la {this.Name}"); }
+
     }
 }

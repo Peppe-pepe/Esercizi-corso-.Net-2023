@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CountryDIstinction.Classes
 {
-    public class City : GeographicArea,IAdministrativeEntity
+    public class City : GeographicArea
     {
         public County province;
         public Citizien inhabitant;//placeholder for array
@@ -20,7 +20,7 @@ namespace CountryDIstinction.Classes
             _population = Population;
             _pil = Pil;
         }
-        public void AddCitizien()
+        public virtual void AddCitizien()
         {
             inhabitant = new Citizien(this, "place", "holder", 0, 0, false);
         }
@@ -35,11 +35,13 @@ namespace CountryDIstinction.Classes
         }
         public void ChangeCounty(County newCounty)
         {
+            if (newCounty.region.country != province.region.country)
+                return;
             province.RemoveCity(this);
             newCounty.AddCity(this);
             province = newCounty;
 
         }
-        public void Administrate() { Console.WriteLine($"Amministro {this.Name}"); }
+
     }
 }

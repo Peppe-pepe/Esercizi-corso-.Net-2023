@@ -15,8 +15,8 @@ namespace CountryDIstinction.Classes
             _members = Nmembers;    
         }
         public int Members { get{ return _members; } }
-        public void AddMember() {
-            country = new ONUCountry(this, "placeholder",0, false, false, 0, 0, 0, false);
+        public void AddMember(Country c) {
+            country = new ONUCountry(this,c.Name,c.Area, false, 0, 0, 0, false);
             _members++;}
         public void RemoveMember(ONUCountry ocountry)
         {

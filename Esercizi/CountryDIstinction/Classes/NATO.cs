@@ -16,7 +16,7 @@ namespace CountryDIstinction.Classes
         }
         public void addMember(Country c)
         {
-            country = new NatoCountry(this, c.Name, c.DeathPenalty, c.FreedomSpeech, c.Population,
+            country = new NatoCountry(this, c.Name,c.Area, c.FreedomSpeech, c.Population,
                  c.Pil, c.PublicDebt, 0);
         }
         public void RemoveMember(NatoCountry c)

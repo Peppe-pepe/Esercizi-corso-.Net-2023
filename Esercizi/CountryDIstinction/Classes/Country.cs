@@ -26,7 +26,7 @@ namespace CountryDIstinction.Classes
         public double Population { get { return _population; } }
         public double Pil { get { return _pil; } }
         public double PublicDebt { get { return _publicDebt; } }
-        public void AddRegion()
+        public  virtual void AddRegion()
         {
             region = new Region(this, "placeholder",0);
         }
@@ -43,5 +43,20 @@ namespace CountryDIstinction.Classes
         public void Represent(){ Console.WriteLine($"Rappresento l'opinione pubblica del {this.Name}"); }
 
         public void Administrate() { Console.WriteLine($"Amministro il/la {this.Name}"); }
+
+        public void HNSRequest()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LawSystem()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EducationalSystem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
