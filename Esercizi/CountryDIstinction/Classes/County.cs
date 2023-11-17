@@ -9,32 +9,42 @@ namespace CountryDIstinction.Classes
 {
     public class County : GeographicArea
     {
-        public City city;//placeholder for array
-        public Region region;
+        protected City[] _cities;
+        protected Region _region;
+        protected int numberOfCities;
         public County(Region R, string Name,double Area) : base(Name,Area)
         {
-            region = R;
+            _region = R;
+            _cities = new City[10];
         }
         public virtual void AddCity()
         {
-            city = new City(this, "placeholder", 0,0, 0);
+            _cities[numberOfCities] = new City(this, "placeholder", 0,0, 0);
+            numberOfCities++;
         }
         public void AddCity(City c)
         {
-            city = c;
+            _cities[numberOfCities] = c;
+            numberOfCities++;
         }
         public void RemoveCity(City c)
         {
-            //to do
-            city = null;
+            int index = Array.IndexOf(_cities, c);
+            _cities[index] = null;
+            for (; index < numberOfCities; index++)
+            {
+                _cities[index] = _cities[index + 1];
+            }
+            numberOfCities--;
         }
+        public Region region { get { return _region; } }
         public void ChangeRegion(Region newRegion)
         {
             if (newRegion.country != region.country)
                 return;
             region.RemoveCounty(this);
             newRegion.AddCounty(this);
-            region = newRegion;
+            _region = newRegion;
         }
 
     }

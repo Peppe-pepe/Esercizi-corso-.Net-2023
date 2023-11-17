@@ -9,11 +9,12 @@ namespace CountryDIstinction.Classes
 {
       public class Country : GeographicArea,IPoliticalOrg,IAdministrativeEntity
     {
-        public Region region;//placeholder for array
-        bool _freedomOfSpeech;
-        double _population;
-        double _pil;
-        double _publicDebt;
+        protected Region[] _regions;//placeholder for array
+        protected bool _freedomOfSpeech;
+        protected double _population;
+        protected double _pil;
+        protected double _publicDebt;
+        protected int numberOfRegions;
         public Country(String Name, double Area, bool FreedomofSpeech, double Population,
             double Pil, double PublicDebt):base(Name,Area)
         {
@@ -21,6 +22,7 @@ namespace CountryDIstinction.Classes
             _population = Population;
             _pil = Pil;
             _publicDebt = PublicDebt;
+            _regions = new Region[10];
         }
         public bool FreedomSpeech { get { return _freedomOfSpeech; } }
         public double Population { get { return _population; } }
@@ -28,16 +30,23 @@ namespace CountryDIstinction.Classes
         public double PublicDebt { get { return _publicDebt; } }
         public  virtual void AddRegion()
         {
-            region = new Region(this, "placeholder",0);
+            _regions[numberOfRegions] = new Region(this, "placeholder",0);
+            numberOfRegions++;
         }
         public void AddRegion(Region r)
         {
-            region = r;
+            _regions[numberOfRegions++] = r;
+            numberOfRegions++;
         }
         public void RemoveRegion(Region region)
         {
-            //to do
-            region = null;
+            int index = Array.IndexOf(_regions, region);
+            _regions[index] = null;
+            for(;index<numberOfRegions;index++)
+            {
+                _regions[index] = _regions[index + 1];
+            }
+            numberOfRegions--;
         }
 
         public void Represent(){ Console.WriteLine($"Rappresento l'opinione pubblica del {this.Name}"); }

@@ -8,11 +8,11 @@ namespace CountryDIstinction.Classes
 {
     public class Citizien : Person
     {
-        public City city;
-        private int _nSons;
-        private bool _isInDebt;
-        private string _dateOfBirth;
-        private string _gender;
+        protected City city;
+        protected int _nSons;
+        protected bool _isInDebt;
+        protected string _dateOfBirth;
+        protected string _gender;
 
         public Citizien(
                 City c,

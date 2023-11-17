@@ -9,24 +9,35 @@ namespace CountryDIstinction.Classes
 {
     public class Region : GeographicArea
     {
-        public Country country;
-        public County province;//placeholder for array
+        protected Country _country;
+        protected County[] _counties;//placeholder for array
+        protected int numberOfCounties;
         public Region(Country c, string Name,double Area):base(Name, Area)  
         {
-            country = c;
+            _country = c;
+            _counties = new County[10];
         }
+
+        public Country country { get{ return _country; } }
         public virtual void  AddCounty()
         {
-            province = new County(this, "placeholder",0);
+            _counties[numberOfCounties] = new County(this, "placeholder",0);
+            numberOfCounties++;
         }
         public void AddCounty(County c)
         {
-            province = c;
+            _counties[numberOfCounties] = c;
+            numberOfCounties++;
         }
         public void RemoveCounty(County c)
         {
-            //to do
-            province = null;
+            int index = Array.IndexOf(_counties, c);
+            _counties[index] = null;
+            for (; index < numberOfCounties; index++)
+            {
+                _counties[index] = _counties[index + 1];
+            }
+            numberOfCounties--;
         }
 
 

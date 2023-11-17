@@ -29,6 +29,10 @@ namespace CountryDIstinction.Classes
         public string Surname {get {return _surname; } }
         public string DateOfBirth {  get { return _dateOfBirth; }  }
         public string Gender { get { return _gender; } }
-        public string CountryOfResidence { get { return _countryOfResidence; } }
+        public string CountryOfResidence { get { return _countryOfResidence; } private set { _countryOfResidence = value; } }
+        public void ChangeCountry(EUCountry newCountry)
+        {
+            CountryOfResidence = newCountry.Name;
+        }
     }
 }

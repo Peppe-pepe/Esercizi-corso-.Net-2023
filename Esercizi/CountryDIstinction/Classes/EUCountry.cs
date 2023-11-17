@@ -15,8 +15,7 @@ namespace CountryDIstinction.Classes
         bool _isNATO;
         public EU union;
         public EUParliament parliament;
-        public new EURegion region;
-
+        protected new EURegion[] _regions;
         public EUCountry(EUParliament Parliament,EU Union, String Name, double Area, bool FreedomofSpeech, double Population,
             double Pil, double PublicDebt, bool IsONU, bool IsNato) : base(Name,Area, FreedomofSpeech, Population, Pil, PublicDebt)
         {
@@ -24,7 +23,7 @@ namespace CountryDIstinction.Classes
             _isONU = IsONU;
             _isNATO = IsNato;
             union = Union;
-
+            _regions = new EURegion[10];
         }
         public bool RespectsRights(Country c)
         {
@@ -35,16 +34,22 @@ namespace CountryDIstinction.Classes
 
         public override void AddRegion()
         {
-            region = new EURegion(parliament,this, "placeholder", 0);
+            _regions[numberOfRegions] = new EURegion(parliament,this, "placeholder", 0);
+            numberOfRegions++;
         }
         public void AddRegion(EURegion r)
         {
-            region = r;
+            _regions[numberOfRegions] = r;
+            numberOfRegions++;
         }
         public void RemoveRegion(EURegion region)
         {
-            //to do
-            region = null;
+            int index = Array.IndexOf(_regions, region);
+            _regions[index] = null;
+            for (; index < numberOfRegions; index++)
+            {
+                _regions[index] = _regions[index + 1];
+            }
         }
 
         public bool IsOnu { get { return _isONU; } }

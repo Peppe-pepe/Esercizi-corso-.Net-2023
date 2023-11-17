@@ -9,25 +9,33 @@ namespace CountryDIstinction.Classes
     public class EUCounty:County
     {
         public EUParliament parliament;
-        public new EUCity city;
+        public new EUCity[] _cities;
         public new EURegion region;
         public EUCounty(EUParliament Parliament,EURegion R, string Name, double Area) : base(R, Name, Area)
         {
             region = R;
             parliament = Parliament;
+            _cities = new EUCity[10];
         }
         public override void AddCity()
         {
-            city = new EUCity(parliament, this, "placeholder", 0, 0, 0);
+            _cities[numberOfCities] = new EUCity(parliament, this, "placeholder", 0, 0, 0);
+            numberOfCities++;
         }
         public void AddCity(EUCity c)
         {
-            city = c;
+            _cities[numberOfCities] = c;
+            numberOfCities++;
         }
         public void RemoveCity(EUCity c)
         {
-            //to do
-            city = null;
+            int index = Array.IndexOf(_cities, c);
+            _cities[index] = null;
+            for (; index < numberOfCities; index++)
+            {
+                _cities[index] = _cities[index + 1];
+            }
+            numberOfCities--;
         }
         public void ChangeRegion(EURegion newRegion)
         {

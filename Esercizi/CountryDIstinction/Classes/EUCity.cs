@@ -11,12 +11,14 @@ namespace CountryDIstinction.Classes
     {
         public  EUParliament parliament;
         public new EUCounty province;
-        public EUCitizien _citiziens; //placeholder for ID
-        EuID _ids;//placeholder for ID array
-        public EUCity(EUParliament Parliament,EUCounty c, string Name, double Area, double Population, double Pil) : base(c, Name, Area, Population, Pil)
+        private new EUCitizien[] _inhabitants; 
+        EuID[] _ids;
+        public EUCity(EUParliament Parliament,EUCounty c, string Name, double Area, int Population, double Pil) : base(c, Name, Area, Population, Pil)
         {
             parliament = Parliament;
             province = c;
+            _inhabitants = new EUCitizien[10];
+            _ids = new EuID[10];
         }
 
         public void EducationalSystem(EuID id)
@@ -34,11 +36,22 @@ namespace CountryDIstinction.Classes
             Console.WriteLine("apro richiesta per i sussidi");
         }
 
-        void AssignID(Citizien c) {
-            _ids = new EuID("0",c.Name,c.Surname,c.DateOfBirth,c.Gender,this.province.region.country.Name);
-            _citiziens = new EUCitizien(_ids, this, c.Name,c.Surname, c.Age, c.nSons, c.IsinDebt);
+        public void AssignID(Citizien c) {
+            _ids[_population] = new EuID("0",c.Name,c.Surname,c.DateOfBirth,c.Gender,this.province.region.country.Name);
+            _inhabitants[_population] = new EUCitizien(_ids[_population], this, c.Name,c.Surname, c.Age, c.nSons, c.IsinDebt);
+            _population++;
         }
+        public void AddCitizien(EUCitizien c,EuID e)
+        {
+            e.ChangeCountry(this.province.region.country);
+            _ids[_population] = e;
+            _inhabitants[_population] = c;
+            _population++;
+        }
+        public void RemoveCitizien(EUCitizien c,EuID e)
+        {
 
+        }
         public void LawSystem()
         {
            //to do
