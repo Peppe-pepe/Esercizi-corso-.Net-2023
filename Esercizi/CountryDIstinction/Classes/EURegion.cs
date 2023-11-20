@@ -15,29 +15,58 @@ namespace CountryDIstinction.Classes
         {
             country = c;
             parliament = Parliament;
-            _counties = new EUCounty[10];
+            _counties = new EUCounty[_maxCounties];
         }
         public override void AddCounty()
         {
-            _counties[numberOfCounties]= new EUCounty(this.parliament,this, "placeholder", 0);
-            numberOfCounties++;
+            if (_numberOfCounties < _maxCounties)
+            {
+                _counties[_numberOfCounties] = new EUCounty(this.parliament, this, "placeholder", 0);
+                _numberOfCounties++;
+            }
+            else
+                Console.WriteLine("massimo province raggiunto");
+            
         }
         public void AddCounty(EUCounty c)
         {
-            _counties[numberOfCounties] = c;
-            numberOfCounties++;
+            _counties[_numberOfCounties] = c;
+            _numberOfCounties++;
         }
         public void RemoveCounty(EUCounty c)
         {
             int index = Array.IndexOf(_counties, c);
             _counties[index] = null;
-            for (; index < numberOfCounties; index++)
+            for (; index < _numberOfCounties; index++)
             {
                 _counties[index] = _counties[index + 1];
             }
-            numberOfCounties--;
+            _numberOfCounties--;
         }
+        protected override int CountCities()
+        {
+            int count = 0;
+            foreach (var item in _counties)
+            {
+                if (item == null)
+                    continue;
+                count = +item.NumberOfCities;
+            }
+            return count;
+        }
+        public override void DistributePopulation()
+        {
+            int totalCounties = CountCities();
+            foreach (var item in _counties)
+            {
+                if (item == null)
+                    continue;
+                item.Population = item.NumberOfCities * (_population / totalCounties);
+                item.DistributePopulation();
+            }
 
+
+        }
         public void ChangeCountry(EUCountry newCountry)
         {
             parliament.BorderRedefinition(this, newCountry);

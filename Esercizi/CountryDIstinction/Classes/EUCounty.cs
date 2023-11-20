@@ -15,27 +15,37 @@ namespace CountryDIstinction.Classes
         {
             region = R;
             parliament = Parliament;
-            _cities = new EUCity[10];
+            _cities = new EUCity[_maxCities];
         }
         public override void AddCity()
         {
-            _cities[numberOfCities] = new EUCity(parliament, this, "placeholder", 0, 0, 0);
-            numberOfCities++;
+            if (_numberOfCities < _maxCities)
+            {
+                _cities[_numberOfCities] = new EUCity(parliament, this, "placeholder", 0, 0, 0);
+                _numberOfCities++;
+            }
+            else
+                Console.WriteLine("massimo città raggiunto");
         }
         public void AddCity(EUCity c)
         {
-            _cities[numberOfCities] = c;
-            numberOfCities++;
+            if (_numberOfCities < _maxCities)
+            {
+                _cities[_numberOfCities] = c;
+                _numberOfCities++;
+            }
+            else
+                Console.WriteLine("massimo città raggiunto");
         }
         public void RemoveCity(EUCity c)
         {
             int index = Array.IndexOf(_cities, c);
             _cities[index] = null;
-            for (; index < numberOfCities; index++)
+            for (; index < _numberOfCities; index++)
             {
                 _cities[index] = _cities[index + 1];
             }
-            numberOfCities--;
+            _numberOfCities--;
         }
         public void ChangeRegion(EURegion newRegion)
         {
@@ -49,6 +59,18 @@ namespace CountryDIstinction.Classes
             }
      
         }
+        public override void DistributePopulation()
+        {
 
+            foreach (var item in _cities)
+            {
+                if (item == null)
+                    continue;
+                item.MaxPopulation = _population / _numberOfCities;
+                item.AllocateCitiensArray();
+            }
+
+
+        }
     }
 }

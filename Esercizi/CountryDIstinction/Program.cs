@@ -15,12 +15,16 @@ namespace CountryDIstinction
             EU Union= new EU("Mario Draghi");
             EUParliament parliament = new EUParliament(5);
             EUCountry Italy = new EUCountry(parliament,Union,"Italy",301.340,
-                true,60000000,150000000000,2000000000,true,true);
-            EUCountry Germany = new EUCountry(parliament,Union, "Germany", 501.340,
-               true, 60000000, 150000000000, 2000000000, true, true);
+                true,200,150000000000,2000000000,true,true);
+            EURegion Piemonte= new EURegion(parliament, Italy, "piemonte", 0);
             EURegion Lombardia = new EURegion(parliament, Italy, "lombardia", 0);
-            Lombardia.ChangeCountry(Germany);
-
+            Piemonte.NumberOfCounties = 5;
+            Lombardia.NumberOfCounties = 3;
+            Italy.AddRegion(Lombardia);
+            Italy.AddRegion(Piemonte);
+            Italy.DistributePopulation();
+            Console.WriteLine($"Popolazione del Piemonte {Piemonte.Population}");
+            Console.WriteLine($"Popolazione della Lombardia {Lombardia.Population}");
         }
 
     }

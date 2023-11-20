@@ -14,6 +14,7 @@ namespace CountryDIstinction.Classes
         protected string _name;
         protected int _population;
         protected double _pil;
+        protected int _maxPopulation=10;
         public City(County c, string Name,double Area,int Population, double Pil):base(Name,Area)
         {
             _province = c;
@@ -29,6 +30,11 @@ namespace CountryDIstinction.Classes
         {
             _inhabitants[_population] = c;
             _population++;
+        }
+
+        public virtual void AllocateCitiensArray()
+        {
+            _inhabitants = new Citizien[_maxPopulation];
         }
         public void RemoveCitizien(Citizien c)
         {
@@ -49,6 +55,8 @@ namespace CountryDIstinction.Classes
             _province = newCounty;
 
         }
+        public int MaxPopulation { get { return _maxPopulation; } set { _maxPopulation = value; } }
+
 
     }
 }

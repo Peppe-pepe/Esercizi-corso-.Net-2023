@@ -10,7 +10,7 @@ namespace CountryDIstinction.Classes
     internal class EuroZoneState : EUCountry,IEuroCentralBank
     {
         //to do
-        public EuroZoneState(EUParliament parliament,EU Union, string Name, double Area, bool FreedomofSpeech, double Population, double Pil, double PublicDebt, bool IsONU, bool IsNato) :
+        public EuroZoneState(EUParliament parliament,EU Union, string Name, double Area, bool FreedomofSpeech, int Population, double Pil, double PublicDebt, bool IsONU, bool IsNato) :
             base(parliament,Union, Name, Area, FreedomofSpeech, Population, Pil, PublicDebt, IsONU, IsNato)
         {
         }

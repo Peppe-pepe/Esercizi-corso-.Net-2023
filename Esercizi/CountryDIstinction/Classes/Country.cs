@@ -11,42 +11,45 @@ namespace CountryDIstinction.Classes
     {
         protected Region[] _regions;//placeholder for array
         protected bool _freedomOfSpeech;
-        protected double _population;
+        protected int _population;
         protected double _pil;
         protected double _publicDebt;
-        protected int numberOfRegions;
-        public Country(String Name, double Area, bool FreedomofSpeech, double Population,
+        protected int _numberOfRegions;
+        protected int _maxRegions = 10;
+        public Country(String Name, double Area, bool FreedomofSpeech, int Population,
             double Pil, double PublicDebt):base(Name,Area)
         {
             _freedomOfSpeech = FreedomofSpeech;
             _population = Population;
             _pil = Pil;
             _publicDebt = PublicDebt;
-            _regions = new Region[10];
+            _regions = new Region[_maxRegions];
         }
         public bool FreedomSpeech { get { return _freedomOfSpeech; } }
-        public double Population { get { return _population; } }
+        public int Population { get { return _population; } }
         public double Pil { get { return _pil; } }
         public double PublicDebt { get { return _publicDebt; } }
-        public  virtual void AddRegion()
+        public int MaxRegions { get { return _maxRegions; } set { _maxRegions = value; } }
+
+        public virtual void AddRegion()
         {
-            _regions[numberOfRegions] = new Region(this, "placeholder",0);
-            numberOfRegions++;
+            _regions[_numberOfRegions] = new Region(this, "placeholder",0);
+            _numberOfRegions++;
         }
         public void AddRegion(Region r)
         {
-            _regions[numberOfRegions++] = r;
-            numberOfRegions++;
+            _regions[_numberOfRegions++] = r;
+            _numberOfRegions++;
         }
         public void RemoveRegion(Region region)
         {
             int index = Array.IndexOf(_regions, region);
             _regions[index] = null;
-            for(;index<numberOfRegions;index++)
+            for(;index<_numberOfRegions;index++)
             {
                 _regions[index] = _regions[index + 1];
             }
-            numberOfRegions--;
+            _numberOfRegions--;
         }
 
         public void Represent(){ Console.WriteLine($"Rappresento l'opinione pubblica del {this.Name}"); }
@@ -66,6 +69,31 @@ namespace CountryDIstinction.Classes
         public void EducationalSystem()
         {
             throw new NotImplementedException();
+        }
+
+        protected virtual int CountCounties()
+        {
+            int count = 0;
+            foreach (var item in _regions)
+            {
+                if(item!=null)
+                    count+=item.NumberOfCounties;
+            }
+            return count;
+        }
+        public virtual void DistributePopulation()
+        {
+            int totalCounties=CountCounties();
+            Console.WriteLine($"{totalCounties}");
+            foreach(var item in _regions)
+            {
+                if (item != null) {
+                    item.Population = item.NumberOfCounties * (_population / totalCounties);
+                }
+              //  item.DistributePopulation();
+            }
+   
+
         }
     }
 }

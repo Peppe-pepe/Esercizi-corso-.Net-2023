@@ -11,7 +11,7 @@ namespace CountryDIstinction.Classes
     {
         string _punishment;
         public CapitalPunishmentState(string Name, double Area, bool FreedomofSpeech,
-            double Population, double Pil, double PublicDebt,string punishment) : base(Name, Area, FreedomofSpeech, Population, Pil, PublicDebt)
+            int Population, double Pil, double PublicDebt,string punishment) : base(Name, Area, FreedomofSpeech, Population, Pil, PublicDebt)
         {
             _punishment = punishment;
         }

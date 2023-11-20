@@ -18,18 +18,18 @@ namespace CountryDIstinction.Classes
         public void BorderRedefinition(EUCity a, EUCounty b)
         {
             Console.WriteLine("valori della città prima del cambiamento");
-            Console.WriteLine($"Regione : {a.province.region.country.Name}");
-            Console.WriteLine($"Regione : {a.province.region.Name}");
-            Console.WriteLine($"Provincia : {a.province.Name}");
+            Console.WriteLine($"Regione : {a._province.region.country.Name}");
+            Console.WriteLine($"Regione : {a._province.region.Name}");
+            Console.WriteLine($"Provincia : {a._province.Name}");
             Console.WriteLine($"Nome : {a.Name}");
             Console.WriteLine($"Area : {a.Area}");
-            a.province.RemoveCity(a);
+            a._province.RemoveCity(a);
             b.AddCity(a);
-            a.province = b;
+            a._province = b;
             Console.WriteLine("valori della regione dopo il cambiamento");
-            Console.WriteLine($"Nazione : {a.province.region.country.Name}");
-            Console.WriteLine($"Regione : {a.province.region.Name}");
-            Console.WriteLine($"Provincia : {a.province.Name}");
+            Console.WriteLine($"Nazione : {a._province.region.country.Name}");
+            Console.WriteLine($"Regione : {a._province.region.Name}");
+            Console.WriteLine($"Provincia : {a._province.Name}");
             Console.WriteLine($"Nome : {a.Name}");
             Console.WriteLine($"Area : {a.Area}");
 
