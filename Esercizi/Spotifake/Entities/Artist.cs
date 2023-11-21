@@ -26,11 +26,17 @@ namespace Spotifake.Entities
             _bio=bio;
 
         }
+
+        public Artist(string name, string surname, string dateOfBirth,string artName):base(name,surname,dateOfBirth)
+        {
+            _artName = artName;
+        }
+
         public void PublishSong(Album a, int duration, string genre, string title, string release)
         {
             _songs.Add(new Song(this, a, duration, genre, title, release));
         }
-        public void PublishSong(int duration, string genre, string title, string release)
+        public void PublishSong(string title, int duration, string genre, string release)
         {
             _songs.Add(new Song(this, duration, genre, title, release));
         }

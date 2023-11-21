@@ -17,13 +17,10 @@ namespace Spotifake.Entities
        private string _username;
        private string _password;
 
-        public User(string name, string surname, string dateOfBirth,Setting settings, List<Playlist> playlists, List<Song> favouriteSongs, List<Radio> favouriteRadios, 
+        public User(string name, string surname, string dateOfBirth,
             string username, string password):base(name,surname,dateOfBirth)
         {
-            _settings = settings;
-            _playlists = playlists;
-            _favouriteSongs = favouriteSongs;
-            _favouriteRadios = favouriteRadios;
+            _settings = new Setting(this);
             _username = username;
             _password = password;
         }

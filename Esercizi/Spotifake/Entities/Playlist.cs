@@ -28,7 +28,7 @@ namespace Spotifake.Entities
         public void AddSong(Song s) => _songs.Add(s);
         public void AddSongs(List<Song> s)
         {
-            foreach(var item in  s) {
+            foreach(Song item in  s) {
                 if (item != null)
                     _songs.Add(item);
             }

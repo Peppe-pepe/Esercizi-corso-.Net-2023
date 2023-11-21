@@ -54,6 +54,18 @@ namespace Spotifake.Entities
             _groups.Add(group);
         }
 
+        public Album(string title, string releaseDate, int nOfTracks, bool isLive, Artist artist,Song song)
+        {
+            _title = title;
+            _releaseDate = releaseDate;
+            _nOfTracks = nOfTracks;
+            _isLive = isLive;
+            _artists = new List<Artist>();
+            _songs = new List<Song>();
+            _artists.Add(artist);
+            _songs.Add(song);
+        }
+
         public string Title { get => _title; set => _title = value; }
         public string ReleaseDate { get => _releaseDate; set => _releaseDate = value; }
         public int NOfTracks { get => _nOfTracks; set => _nOfTracks = value; }

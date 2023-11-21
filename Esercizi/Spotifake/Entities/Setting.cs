@@ -10,6 +10,13 @@ namespace Spotifake.Entities
         private bool _isPremium;
         private int _nOfDevices;
 
+        public Setting(User user) {
+            _user = user;
+            _darkTheme= false;
+            _equalizer = "default";
+            _isPremium= false;
+            _nOfDevices=0;
+        }
         public Setting(User user, bool darkTheme, string equalizer, bool isPremium, int nOfDevices)
         {
             _user = user;
