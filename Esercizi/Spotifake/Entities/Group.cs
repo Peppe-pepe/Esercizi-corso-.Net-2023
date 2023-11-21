@@ -1,6 +1,7 @@
 ﻿using Spotifake.Classes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,12 +38,18 @@ namespace Spotifake.Entities
         }
         public void PublishSong(int duration,string genre,string title,string release)
         {
-            _songs.Add(new Song(this,duration,genre,title,release));
+            _songs.Add(new Song(this, duration, genre, title, release));
         }
-        public void PublishAlbum() { }
-        public List<Artist> Members { get => _members; set => _members = value; }
-        public List<Album> Albums { get => _albums; set => _albums = value; }
-        public List<Song> Songs { get => _songs; set => _songs = value; }
-        public string Bio { get => _bio; set => _bio = value; }
+        public void PublishAlbum(string Title,string release,int nTracks,bool live,List<Song> songs) {
+            _albums.Add(new Album(Title,release,nTracks,live,this,songs));
+        }
+        public void AddSong(Song s) => _songs.Add(s);  //used for feat songs
+
+        public void AddAlbum(Album a) => _albums.Add(a); //used for feat albums
+
+        public List<Artist> Members { get => _members; }
+        public List<Album> Albums { get => _albums; }
+        public List<Song> Songs { get => _songs; }
+        public string Bio { get => _bio; }
     }
 }

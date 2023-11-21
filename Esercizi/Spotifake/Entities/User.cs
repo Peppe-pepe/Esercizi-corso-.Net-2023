@@ -28,6 +28,18 @@ namespace Spotifake.Entities
             _password = password;
         }
 
+        public void CreatePlaylist(String name) {
+            _playlists.Add(new Playlist(name, this));
+        }
+        public void RemovePlaylist(Playlist p) {
+            try
+            {
+                _playlists.Remove(p);
+            }
+            catch (System.NullReferenceException) {
+                Console.WriteLine("l'utente non ha playlist");
+            }
+        }
         public List<Playlist> Playlists { get => _playlists; set => _playlists = value; }
         public List<Song> FavouriteSongs { get => _favouriteSongs; set => _favouriteSongs = value; }
         public List<Radio> FavouriteRadios { get => _favouriteRadios; set => _favouriteRadios = value; }
@@ -36,3 +48,4 @@ namespace Spotifake.Entities
         internal Setting Settings { get => _settings; set => _settings = value; }
     }
 }
+

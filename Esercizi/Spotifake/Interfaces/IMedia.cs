@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spotifake.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace Spotifake.Interfaces
 {
     public interface IMedia
     {
-        public void Play();
-        public void Pause();
-        public void Stop();
-        public void Forward();
-        public void Previous();
+        public void Play(Song s);
+        public void Pause(Song s);
+        public void Stop(Song s);
+        public void Forward(Song s);
+        public void Previous(Song s);
     }
 }
