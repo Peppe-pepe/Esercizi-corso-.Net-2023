@@ -1,0 +1,38 @@
+﻿using Spotifake.Classes;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Spotifake.Entities
+{
+    public class User : Person
+    {
+       private Setting _settings;
+       private List<Playlist> _playlists;
+       private List<Song> _favouriteSongs;
+       private List<Radio> _favouriteRadios;
+       private string _username;
+       private string _password;
+
+        public User(string name, string surname, string dateOfBirth,Setting settings, List<Playlist> playlists, List<Song> favouriteSongs, List<Radio> favouriteRadios, 
+            string username, string password):base(name,surname,dateOfBirth)
+        {
+            _settings = settings;
+            _playlists = playlists;
+            _favouriteSongs = favouriteSongs;
+            _favouriteRadios = favouriteRadios;
+            _username = username;
+            _password = password;
+        }
+
+        public List<Playlist> Playlists { get => _playlists; set => _playlists = value; }
+        public List<Song> FavouriteSongs { get => _favouriteSongs; set => _favouriteSongs = value; }
+        public List<Radio> FavouriteRadios { get => _favouriteRadios; set => _favouriteRadios = value; }
+        public string Username { get => _username; set => _username = value; }
+        public string Password { get => _password; set => _password = value; }
+        internal Setting Settings { get => _settings; set => _settings = value; }
+    }
+}
