@@ -24,12 +24,15 @@ namespace Spotifake.Entities
             _albums = albums;
             _songs = songs;
             _bio=bio;
-
+            _songs=new List<Song>();  
+            _albums=new List<Album>();  
         }
 
         public Artist(string name, string surname, string dateOfBirth,string artName):base(name,surname,dateOfBirth)
         {
             _artName = artName;
+            _songs = new List<Song>();
+            _albums = new List<Album>();
         }
 
         public void PublishSong(Album a, int duration, string genre, string title, string release)
@@ -63,9 +66,26 @@ namespace Spotifake.Entities
                 _group.RemoveMember(this);
                 _group = null;
             }
-            catch(System.NullReferenceException e)
+            catch(System.NullReferenceException)
             {
                 Console.WriteLine("l'artista non era in nessun gruppo");
+            }
+        }
+
+        public void ShowSongs()
+        {
+            foreach (Song song in _songs)
+            {
+                if (song != null)
+                    Console.WriteLine($"{song.Title}");
+            }
+        }
+        public void ShowAlbums()
+        {
+            foreach (Album album in _albums)
+            {
+                if (album != null)
+                    Console.WriteLine($"{album.Title}");
             }
         }
         public string ArtName { get => _artName; }

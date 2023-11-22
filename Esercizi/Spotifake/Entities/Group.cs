@@ -10,17 +10,20 @@ namespace Spotifake.Entities
 {
     public class Group
     {
+        private string _name;
         private List<Artist> _members;
         private List<Album> _albums;
         private List<Song> _songs;
         private string _bio;
        
-        public Group(List<Artist> members, List<Album> albums, List<Song> songs, string bio)
+        public Group(String name,List<Artist> members, List<Album> albums, List<Song> songs, string bio)
         {
+            _name = name;
             _members = members;
             _albums = albums;
             _songs = songs;
             _bio = bio;
+
         }
 
         public void AddMember(Artist a)
@@ -47,6 +50,23 @@ namespace Spotifake.Entities
 
         public void AddAlbum(Album a) => _albums.Add(a); //used for feat albums
 
+        public void ShowSongs()
+        {
+            foreach (Song song in _songs)
+            {
+                if (song != null)
+                    Console.WriteLine($"{song.Title}");
+            }
+        }
+        public void ShowAlbums()
+        {
+            foreach (Album album in _albums)
+            {
+                if (album != null)
+                    Console.WriteLine($"{album.Title}");
+            }
+        }
+        public String Name { get => _name; }
         public List<Artist> Members { get => _members; }
         public List<Album> Albums { get => _albums; }
         public List<Song> Songs { get => _songs; }

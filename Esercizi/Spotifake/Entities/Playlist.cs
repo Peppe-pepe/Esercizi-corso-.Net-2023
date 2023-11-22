@@ -39,7 +39,16 @@ namespace Spotifake.Entities
         {
             foreach (var item in s) { if (item != null) _songs.Remove(item); }
         }
-        public List<Song> Songs { get => _songs; set => _songs = value; }
+        public void ShowSongs()
+        {
+            foreach (Song song in _songs)
+            {
+                if (song != null)
+                    Console.WriteLine($"{song.Title}");
+            }
+        }
+        public List<Song> Songs { get => _songs; }
         public User User { get => _user; set => _user = value; }
+        public string Name { get => _name; set => _name = value; }
     }
 }

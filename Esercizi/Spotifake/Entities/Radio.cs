@@ -18,6 +18,15 @@ namespace Spotifake.Entities
             _songs = songs;
         }
 
+        public void ShowSongs()
+        {
+            foreach (Song song in _songs)
+            {
+                if (song != null)
+                    Console.WriteLine($"{song.Title}");
+            }
+        }
+
         public string Name { get => _name; }
         public List<Song> Songs { get => _songs; }
     }

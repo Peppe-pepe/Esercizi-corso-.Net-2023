@@ -52,27 +52,38 @@ namespace Spotifake.Entities
         }
         public void Pause(  )
         {
-            Console.WriteLine($"Paused :{_queue[_index].Title}");
+            try
+            {
+                Console.WriteLine($"Paused :{_queue[_index].Title}");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Non esiste una coda al momento!");
+            }
+           
         }
 
         public void Stop(   )
         {
-            Console.WriteLine($"Stopped reproduction of :{_queue[_index].Title}");
+            try {
+                Console.WriteLine($"Stopped reproduction of :{_queue[_index].Title}");
+            }
+            catch (ArgumentOutOfRangeException) {
+                Console.WriteLine("Non esiste una coda al momento!");
+            }
+            
         }
 
         public void Forward()
         {
-            if (_queue.Count == 0)
-                return;
-            _index++;
-
+            if (CheckQueue())
+                _index++;
         }
 
         public void Previous()
         {
-            if (_queue.Count == 0)
-                return;
-           _index--;
+            if (CheckQueue())
+                _index--;
         }
 
         public void PlayQueue()
@@ -91,9 +102,17 @@ namespace Spotifake.Entities
             }
             catch (System.NullReferenceException)
             {
-                Console.WriteLine("non esiste nessuna coda");
+                Console.WriteLine($"la canzone numero {_index} è corrotta");
             }
 
+        }
+
+        private bool CheckQueue()
+        {
+            if (_queue.Count > 0)
+                return true;
+            Console.WriteLine("Non esiste una coda al momento!");
+            return false;
         }
     }
 }
