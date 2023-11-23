@@ -80,14 +80,18 @@ namespace Spotifake.Entities
 
         public void Forward()
         {
-            if (CheckQueue())
-                _index++;
+            if (!CheckQueue())
+                return;
+            _index++;
+            PlayQueue();
         }
 
         public void Previous()
         {
-            if (CheckQueue())
-                _index--;
+            if (!CheckQueue())
+                return;    
+            _index--;
+            PlayQueue();    
         }
 
         public void PlayQueue()
