@@ -9,18 +9,18 @@ namespace Spotifake.Entities
     public class Person
     {
         private string _name;
-        private string _email;
+        private string _surname;
         private string _dateOfBirth;
 
-        public Person(string name, string email, string dateOfBirth)
+        public Person(string name, string surname, string dateOfBirth)
         {
             _name = name;
-            _email = email;
+            _surname = surname;
             _dateOfBirth = dateOfBirth;
         }
 
         public string Name { get => _name; set => _name = value; }
-        public string Email { get => _email; set => _email = value; }
+        public string Surname { get => _surname; set => _surname = value; }
         public string DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
     }
 }

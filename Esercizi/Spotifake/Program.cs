@@ -39,6 +39,7 @@ namespace Spotifake
             Console.WriteLine("Premi B per riprodurre la canzone precedente");
             Console.WriteLine("Premi S per fermare la riproduzione");
             Console.WriteLine("Premi Z per mettere in pausa la riproduzione");
+            Console.WriteLine("Premi X per uscire dal programma");
             string check;
             while (true){
                 check=Console.ReadLine();
@@ -59,6 +60,7 @@ namespace Spotifake
                     case "B": media.Previous();break;
                     case "S": media.Stop();break;
                     case "Z": media.Pause();break;
+                    case "X": Environment.Exit(0);break;
                     default: Console.WriteLine("inserisci un opzione valida");break;
                 }
             }

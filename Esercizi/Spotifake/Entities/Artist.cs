@@ -93,5 +93,10 @@ namespace Spotifake.Entities
         public List<Song> Songs { get => _songs; }
         public Group Group { get => _group; }
         public string Bio { get => _bio; }
+
+        public override string ToString()
+        {
+            return _artName + " " +base.Name+" "+base.Surname+" "+base.DateOfBirth + " " + Bio;
+        }
     }
 }
