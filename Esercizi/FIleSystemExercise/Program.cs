@@ -27,7 +27,7 @@ namespace FIleSystemExercise
 
                     using (StreamWriter sw = new StreamWriter(filePath,true))
                     {
-                        foreach (var item in list)
+                        foreach (Account item in list)
                         {
                             sw.WriteLine(item.ToString());
                         }
@@ -66,7 +66,7 @@ namespace FIleSystemExercise
 
                 using (StreamWriter sw = new StreamWriter(filePath,true))
                 {
-                    foreach (var item in list)
+                    foreach (Customer item in list)
                     {
                         sw.WriteLine(item.ToString());
                     }

@@ -15,7 +15,8 @@ namespace Spotifake
             Database database = new Database(); 
             User user = new User("Giuseppe", "Pepe", "20-12-1999", "Peppe-Pepe", "1234");
             Artist artist1 = new Artist("Vincenzo ", "Sarnelli", "7-1-1961", "Tony Tammaro");
-            Song song1 = null;//new Song(artist1, 140, "pop", "'O trerrote", "21-02-1997");
+            Song song;//used as a temp for SelectSong
+            Song song1 =new Song(artist1, 140, "pop", "'O trerrote", "21-02-1997");
             Album album1 = new Album("Monnezzarium", "21-02-1997", 10, false, artist1, song1);
             artist1.AddSong(song1);
             artist1.AddAlbum(album1);
@@ -41,7 +42,12 @@ namespace Spotifake
                     case "P": user.ShowPlaylists();break;//to do
                     case "R": user.ShowRadios();break;//to do
                     case "C":check = Console.ReadLine(); Console.WriteLine(check); database.SearchSong(check);break;//to do
-                    case "L":media.AddToQueue(song1);media.PlayQueue();break;
+                    case "L":
+                        Console.WriteLine("inserisci il titolo della canzone");
+                        check= Console.ReadLine();
+                        song=database.SelectSong(check);
+                        media.AddToQueue(song);
+                        media.PlayQueue();break;
                     case "F": media.Forward();break;
                     case "B": media.Previous();break;
                     case "S": media.Stop();break;

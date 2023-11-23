@@ -29,49 +29,91 @@ namespace Spotifake.Entities
         {
             foreach(Artist artist in _artists)
             {
-                artist.ShowSongs();
+                if(artist != null)
+                    artist.ShowSongs();
             }
             foreach (Group group in _groups)
             {
-                group.ShowSongs();
+                if (group != null)
+                    group.ShowSongs();
             }
         }
         public void ShowAlbums()
         {
             foreach (Artist artist in _artists)
             {
-                artist.ShowAlbums();
+                if(artist!=null)
+                    artist.ShowAlbums();
             }
             foreach (Group group in _groups)
             {
-                group.ShowAlbums();
+                if(group!=null)
+                    group.ShowAlbums();
             }
         }
         public void SearchSong(String s) {
             List<Song> songs;
             List<Song> foundSong=new List<Song>();
-            foreach (Artist artist in _artists)
-            {
-                songs=artist.Songs;
-                foundSong=foundSong.Concat(songs.Where(song=>song.Title.Equals(s)).ToList()).ToList();
-                
-            }
-            foreach (Group group in _groups)
-            {
-                songs=group.Songs;
-                foundSong = foundSong.Concat(songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
-            }
-            foreach(Song song in foundSong)
-            {
 
-                Console.WriteLine($"{song.Title}");
-                Console.WriteLine($"{song.Genre}");
-                Console.WriteLine($"{song.Duration}");
-                Console.WriteLine($"{song.ReleaseDate}");
+            try
+            {
+                foreach (Artist artist in _artists)
+                {
+                    foundSong = foundSong.Concat(artist.Songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
 
+                }
+                foreach (Group group in _groups)
+                {
+                    songs = group.Songs;
+                    foundSong = foundSong.Concat(songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
+                }
+                foreach (Song song in foundSong)
+                {
+
+                    Console.WriteLine($"{song.Title}");
+                    Console.WriteLine($"{song.Genre}");
+                    Console.WriteLine($"{song.Duration}");
+                    Console.WriteLine($"{song.ReleaseDate}");
+
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine($"Non ci sono Artisti o/e gruppi {ex.Message}");
             }
         }
-
+        public Song SelectSong(string s) //returns the first song with the desired title
+        {
+            List<Song> songs;
+            Song song=null;
+            try {
+                foreach (Artist artist in _artists)
+                {
+                    song = artist.Songs.FirstOrDefault(song => song.Title.Equals(s));
+                    if (song != null)
+                        return song;
+                }
+            } catch (NullReferenceException ex) {
+                Console.WriteLine($"Non ci sono Artisti {ex.Message}");
+                return null;
+            }
+            try
+            {
+                foreach (Group group in _groups)
+                {
+                    song = group.Songs.FirstOrDefault(song => song.Title.Equals(s));
+                    if (song != null)
+                        return song;
+                }
+                Console.WriteLine("Nessuna canzone con quel titolo");
+                return null;
+            }
+            catch(NullReferenceException ex) {
+                Console.WriteLine($"Non ci sono Gruppi {ex.Message}");
+                return null;
+            }
+               
+        }
         public void AddArtist(Artist a)
         {
             _artists.Add(a);    
@@ -86,6 +128,8 @@ namespace Spotifake.Entities
             if (a == null)
                 return;
             Console.WriteLine(a.ArtName);
+            a.ShowAlbums();
+            a.ShowSongs();
         }
 
         private void ShowGroup(Group g)
@@ -94,6 +138,8 @@ namespace Spotifake.Entities
             if (g == null)
                 return;
             Console.WriteLine(g.Name);
+            g.ShowAlbums();
+            g.ShowSongs();
         }
 
        

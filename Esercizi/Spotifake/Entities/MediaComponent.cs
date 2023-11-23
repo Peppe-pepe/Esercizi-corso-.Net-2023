@@ -19,7 +19,10 @@ namespace Spotifake.Entities
         _index = 0;
         }
 
-        public void AddToQueue(Song song) => _queue.Add(song);
+        public void AddToQueue(Song song) { 
+            if(song!=null)
+                _queue.Add(song); 
+        }
         public void RemoveFromQueue(Song song) => _queue.Remove(song);
         public void Play(Song s)
         {
