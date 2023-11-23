@@ -52,9 +52,7 @@ namespace Spotifake.Entities
             }
         }
         public void SearchSong(String s) {
-            List<Song> songs;
             List<Song> foundSong=new List<Song>();
-
             try
             {
                 foreach (Artist artist in _artists)
@@ -64,8 +62,7 @@ namespace Spotifake.Entities
                 }
                 foreach (Group group in _groups)
                 {
-                    songs = group.Songs;
-                    foundSong = foundSong.Concat(songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
+                    foundSong = foundSong.Concat(group.Songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
                 }
                 foreach (Song song in foundSong)
                 {

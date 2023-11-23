@@ -46,12 +46,13 @@ namespace Spotifake
                         Console.WriteLine("inserisci il titolo della canzone");
                         check= Console.ReadLine();
                         song=database.SelectSong(check);
-                        media.AddToQueue(song);
+                        media.Play(song);
                         media.PlayQueue();break;
                     case "F": media.Forward();break;
                     case "B": media.Previous();break;
                     case "S": media.Stop();break;
                     case "Z": media.Pause();break;
+                    default: Console.WriteLine("inserisci un opzione valida");break;
                 }
             }
         }

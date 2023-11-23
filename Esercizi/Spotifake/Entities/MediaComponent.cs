@@ -70,6 +70,7 @@ namespace Spotifake.Entities
         {
             try {
                 Console.WriteLine($"Stopped reproduction of :{_queue[_index].Title}");
+                _queue.Clear();
             }
             catch (ArgumentOutOfRangeException) {
                 Console.WriteLine("Non esiste una coda al momento!");
@@ -94,13 +95,11 @@ namespace Spotifake.Entities
             try
             {
                 
-                while( _index<_queue.Count )
-                {
+                if( _index<_queue.Count )
+                
 
                     Console.WriteLine($"Now Playing : {_queue[_index].Title}");
-                    System.Threading.Thread.Sleep(_queue[_index].Duration * 1000);//here we fake actually playing the song
-                    Forward();
-                }
+                   // System.Threading.Thread.Sleep(_queue[_index].Duration * 1000);//here we fake actually playing the song
 
             }
             catch (System.NullReferenceException)
