@@ -1,11 +1,11 @@
-﻿using Spotifake.Classes;
+﻿using SpotifakeClasses.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotifake.Entities
+namespace SpotifakeClasses.Entities
 {
        public class Artist : Person
     {
@@ -15,7 +15,11 @@ namespace Spotifake.Entities
         private Group _group;
         private string _bio;
 
-
+        public Artist()
+        {
+            _albums = new List<Album>();
+            _songs = new List<Song>();  
+        }
 
         public Artist(string name,string surname,string dateOfBirth,string artName, List<Album> albums, List<Song> songs, string bio):
             base(name,surname,dateOfBirth)

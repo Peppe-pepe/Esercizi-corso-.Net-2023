@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Spotifake.Entities
+namespace SpotifakeClasses.Entities
 {
     public class Setting
     {
@@ -10,6 +10,10 @@ namespace Spotifake.Entities
         private bool _isPremium;
         private int _nOfDevices;
 
+        public Setting()
+        {
+                _user = new User();
+        }
         public Setting(User user) {
             _user = user;
             _darkTheme= false;

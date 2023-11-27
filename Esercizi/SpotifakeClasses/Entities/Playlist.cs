@@ -1,18 +1,23 @@
-﻿using Spotifake.Classes;
+﻿using SpotifakeClasses.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotifake.Entities
+namespace SpotifakeClasses.Entities
 {
     public class Playlist
     {
         private string _name;
         private List<Song> _songs;
         private User _user;
-
+        private int _id;
+        public Playlist()
+        {   
+             _user = new User();    
+             _songs = new List<Song>();
+        }
         public Playlist(String name,List<Song> songs, User user)
         {
             _name = name;
@@ -50,5 +55,6 @@ namespace Spotifake.Entities
         public List<Song> Songs { get => _songs; }
         public User User { get => _user; set => _user = value; }
         public string Name { get => _name; set => _name = value; }
+        public int Id { get => _id; set => _id = value; }
     }
 }

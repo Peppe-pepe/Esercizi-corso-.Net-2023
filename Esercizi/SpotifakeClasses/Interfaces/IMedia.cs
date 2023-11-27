@@ -1,11 +1,11 @@
-﻿using Spotifake.Classes;
+﻿using SpotifakeClasses.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotifake.Interfaces
+namespace SpotifakeClasses.Interfaces
 {
     public interface IMedia
     {

@@ -1,14 +1,15 @@
-﻿using Spotifake.Classes;
+﻿using SpotifakeClasses.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Spotifake.Entities
+namespace SpotifakeClasses.Entities
 {
     public class Database //we'll fake a database with this class
     {
         private List<Artist> _artists;
         private List<Group> _groups;
+        User _user;
         public Database() { 
             _artists = new List<Artist>();  
             _groups = new List<Group>();    
@@ -79,14 +80,14 @@ namespace Spotifake.Entities
                 Console.WriteLine($"Non ci sono Artisti o/e gruppi {ex.Message}");
             }
         }
-        public Song SelectSong(string s) //returns the first song with the desired title
+        public Song SelectSong(int id) //returns the first song with the desired id
         {
             List<Song> songs;
             Song song=null;
             try {
                 foreach (Artist artist in _artists)
                 {
-                    song = artist.Songs.FirstOrDefault(song => song.Title.Equals(s));
+                    song = artist.Songs.FirstOrDefault(song => song.Id.Equals(id));
                     if (song != null)
                         return song;
                 }
@@ -98,7 +99,7 @@ namespace Spotifake.Entities
             {
                 foreach (Group group in _groups)
                 {
-                    song = group.Songs.FirstOrDefault(song => song.Title.Equals(s));
+                    song = group.Songs.FirstOrDefault(song => song.Id.Equals(id));
                     if (song != null)
                         return song;
                 }
@@ -111,11 +112,18 @@ namespace Spotifake.Entities
             }
                
         }
+
+        public void SelectPlaylist( int id) { 
+            
+        }
         public void AddArtist(Artist a)
         {
             _artists.Add(a);    
         }
-
+        public void setUser(User u)
+        {
+            _user= u;
+        }
         public void AddGroup(Group g)
         {
             _groups.Add(g); 
@@ -128,7 +136,18 @@ namespace Spotifake.Entities
             a.ShowAlbums();
             a.ShowSongs();
         }
+        public void ShowRadios()
+        {
+            try { _user.ShowRadios(); }
+            catch (NullReferenceException ex) { Console.WriteLine(ex.Message); return; }    
+                
+        }
+        public void ShowPlaylists()
+        {
+            try { _user.ShowPlaylists(); }
+            catch (NullReferenceException ex) { Console.WriteLine(ex.Message); return; }
 
+        }
         private void ShowGroup(Group g)
         {
 

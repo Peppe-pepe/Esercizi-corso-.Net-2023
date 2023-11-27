@@ -1,11 +1,11 @@
-﻿using Spotifake.Entities;
+﻿using SpotifakeClasses.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotifake.Classes
+namespace SpotifakeClasses.Entities
 {
     public class Song
     {
@@ -16,6 +16,14 @@ namespace Spotifake.Classes
         private string _genre;
         private string _title;
         private string _releaseDate;
+        private int _id;
+        private int _rating;
+        public Song()
+        {
+            _artist = new List<Artist>();
+            _album = new List<Album>();
+            _groups = new List<Group>();
+        }
         public Song(Artist artist, Album album, int duration, string genre, string title, string releaseDate)
         {
             _artist =new List<Artist>();
@@ -81,12 +89,17 @@ namespace Spotifake.Classes
         {
             _groups.Add(g);
         }
-
+        public void UpdateRating()
+        {
+            _rating++;
+        }
         public List<Artist> Artist { get => _artist; }
         public List<Album> Album { get => _album; }
         public int Duration { get => _duration; set => _duration = value; }
         public string Genre { get => _genre; set => _genre = value; }
         public string Title { get => _title; set => _title = value; }
         public string ReleaseDate { get => _releaseDate; set => _releaseDate = value; }
+        public int Id { get => _id; set => _id = value; }
+        public int Rating { get => _rating; set => _rating = value; }
     }
 }

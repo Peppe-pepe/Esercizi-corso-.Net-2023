@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotifake.Entities
+namespace SpotifakeClasses.Entities
 {
     public class Person
     {
@@ -12,6 +12,10 @@ namespace Spotifake.Entities
         private string _surname;
         private string _dateOfBirth;
 
+        public Person()
+        {
+               
+        }
         public Person(string name, string surname, string dateOfBirth)
         {
             _name = name;

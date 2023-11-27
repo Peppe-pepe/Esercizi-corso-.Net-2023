@@ -1,5 +1,5 @@
-﻿using Spotifake.Classes;
-using Spotifake.Interfaces;
+﻿using SpotifakeClasses.Entities;
+using SpotifakeClasses.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Spotifake.Entities
+namespace SpotifakeClasses.Entities
 {
     public class MediaComponent : IMedia
     {

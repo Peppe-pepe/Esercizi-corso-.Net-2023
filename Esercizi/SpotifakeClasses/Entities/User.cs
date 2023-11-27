@@ -1,4 +1,4 @@
-﻿using Spotifake.Classes;
+﻿using SpotifakeClasses.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotifake.Entities
+namespace SpotifakeClasses.Entities
 {
     public class User : Person
     {
@@ -17,6 +17,12 @@ namespace Spotifake.Entities
        private string _username;
        private string _password;
 
+        public User()
+        {
+             _playlists = new List<Playlist>(); 
+            _favouriteSongs = new List<Song>();
+            _favouriteRadios = new List<Radio>();
+        }
         public User(string name, string surname, string dateOfBirth,
             string username, string password):base(name,surname,dateOfBirth)
         {
