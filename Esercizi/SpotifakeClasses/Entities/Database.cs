@@ -82,7 +82,6 @@ namespace SpotifakeClasses.Entities
         }
         public Song SelectSong(int id) //returns the first song with the desired id
         {
-            List<Song> songs;
             Song song=null;
             try {
                 foreach (Artist artist in _artists)
@@ -113,9 +112,25 @@ namespace SpotifakeClasses.Entities
                
         }
 
-        public void SelectPlaylist( int id) { 
-            
+        public Playlist SelectPlaylist( int id) {
+            foreach(Playlist list in _user.Playlists)
+            {
+                if(list.Id.Equals(id)) 
+                    return list;
+            }
+            return null;
         }
+
+        public Radio SelectRadio(int id)
+        {
+            foreach (Radio radio in _user.FavouriteRadios)
+            {
+                if (radio.Id.Equals(id))
+                    return radio;
+            }
+            return null;
+        }
+
         public void AddArtist(Artist a)
         {
             _artists.Add(a);    
