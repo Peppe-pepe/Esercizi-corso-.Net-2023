@@ -82,7 +82,7 @@ namespace SpotifakeClasses.Entities
             foreach (Song song in _songs)
             {
                 if (song != null)
-                    Console.WriteLine($"{song.Title}");
+                    Console.WriteLine($"{song.Id}.{song.Title}");
             }
         }
         public void ShowAlbums()

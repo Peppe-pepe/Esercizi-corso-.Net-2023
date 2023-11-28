@@ -54,7 +54,9 @@ namespace SpotifakeClasses.Entities
         public void PublishAlbum(string Title,string release,int nTracks,bool live,List<Song> songs) {
             _albums.Add(new Album(Title,release,nTracks,live,this,songs));
         }
-        public void AddSong(Song s) => _songs.Add(s);  //used for feat songs
+        public void AddSong(Song s) { 
+            _songs.Add(s);
+        }  //used for feat songs
 
         public void AddAlbum(Album a) => _albums.Add(a); //used for feat albums
 
@@ -63,7 +65,7 @@ namespace SpotifakeClasses.Entities
             foreach (Song song in _songs)
             {
                 if (song != null)
-                    Console.WriteLine($"{song.Title}");
+                    Console.WriteLine($"{song.Id}.{song.Title}");
             }
         }
         public void ShowAlbums()

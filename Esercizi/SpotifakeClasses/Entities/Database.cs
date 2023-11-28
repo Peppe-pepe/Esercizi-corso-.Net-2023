@@ -11,10 +11,12 @@ namespace SpotifakeClasses.Entities
     {
         private List<Artist> _artists;
         private List<Group> _groups;
+        private List<Song> _songs;
         User _user;
         public Database() { 
             _artists = new List<Artist>();  
             _groups = new List<Group>();    
+            _songs = new List<Song>();  
         }
         public Database(List<String> artistFile,List<String> groupFile)
         {
@@ -63,18 +65,10 @@ namespace SpotifakeClasses.Entities
             List<Song> foundSong=new List<Song>();
             try
             {
-                foreach (Artist artist in _artists)
-                {
-                    foundSong = foundSong.Concat(artist.Songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
-
-                }
-                foreach (Group group in _groups)
-                {
-                    foundSong = foundSong.Concat(group.Songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
-                }
+              foundSong = foundSong.Concat(_songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
                 foreach (Song song in foundSong)
                 {
-
+                    Console.WriteLine($"{song.Id}");
                     Console.WriteLine($"{song.Title}");
                     Console.WriteLine($"{song.Genre}");
                     Console.WriteLine($"{song.Duration}");
@@ -92,30 +86,12 @@ namespace SpotifakeClasses.Entities
         {
             Song song=null;
             try {
-                foreach (Artist artist in _artists)
-                {
-                    song = artist.Songs.FirstOrDefault(song => song.Id.Equals(id));
-                    if (song != null)
-                        return song;
-                }
-            } catch (NullReferenceException ex) {
+
+                    song= _songs[id-1];
+                return song;
+            } catch (Exception ex) {
                 List<Exception> list = new List<Exception> { ex };
-                FileHandler<Exception>.WriteOnFile("Errors.txt", list); 
-            }
-            try
-            {
-                foreach (Group group in _groups)
-                {
-                    song = group.Songs.FirstOrDefault(song => song.Id.Equals(id));
-                    if (song != null)
-                        return song;
-                }
-                Console.WriteLine("Nessuna canzone con quel titolo");
-                return null;
-            }
-            catch(NullReferenceException ex) {
-                List<Exception> list = new List<Exception> { ex };
-                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list);
                 return null;
             }
                
@@ -142,7 +118,12 @@ namespace SpotifakeClasses.Entities
 
         public void AddArtist(Artist a)
         {
-            _artists.Add(a);    
+            _artists.Add(a); 
+            foreach(Song song in a.Songs)
+            {
+                _songs.Add(song);
+                song.Id = _songs.Count();
+            }
         }
         public void setUser(User u)
         {
@@ -150,7 +131,12 @@ namespace SpotifakeClasses.Entities
         }
         public void AddGroup(Group g)
         {
-            _groups.Add(g); 
+            _groups.Add(g);
+            foreach (Song song in g.Songs)
+            {
+                _songs.Add(song);
+                song.Id = _songs.Count();
+            }
         }
         private void ShowArtist(Artist a) {
 
@@ -190,6 +176,33 @@ namespace SpotifakeClasses.Entities
             g.ShowSongs();
         }
 
-       
+       public int TotalSongs() {
+            int count=0;
+            try
+            {
+                foreach (Artist artist in _artists)
+                {   
+                     count +=artist.Songs.Count;
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list);
+            }
+            try
+            {
+                foreach (Group group in _groups)
+                {
+                    count += group.Songs.Count;
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
+            }
+            return count;
+        }
     }
 }

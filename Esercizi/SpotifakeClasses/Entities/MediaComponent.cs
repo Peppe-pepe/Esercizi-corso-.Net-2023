@@ -24,33 +24,41 @@ namespace SpotifakeClasses.Entities
                 _queue.Add(song); 
         }
         public void RemoveFromQueue(Song song) => _queue.Remove(song);
-        public void Play(Song s)
+        public void Play(Song s,User u)
         {
+            
+            if(u.RemainingTime>=s.Duration && u.RemainingTime!=-1)
+                u.RemainingTime -= s.Duration;
+            else if (u.RemainingTime != -1)
+            {
+                u.RemainingTime = 0;
+            }
             AddToQueue(s);
+            PlayQueue();
         }
 
-        public void Play(Album a)
+        public void Play(Album a,User u)
         {
             foreach(Song item in a.Songs){
-                AddToQueue(item);
+                Play(item,u);
             }
             PlayQueue();
         }
 
-        public void Play(Playlist p)
+        public void Play(Playlist p,User u)
         {
             foreach (Song item in p.Songs)
             {
-                AddToQueue(item);
+                Play(item,u);
             }
             PlayQueue();    
         }
 
-        public void Play(Radio r)
+        public void Play(Radio r,User u)
         {
             foreach (Song item in r.Songs)
             {
-                Play(item);//radios in spotify overwrite your current Queue,this is reflected here
+                Play(item, u);//radios in spotify overwrite your current Queue,this is reflected here
             }
         }
         public void Pause(  )
@@ -105,6 +113,7 @@ namespace SpotifakeClasses.Entities
                 
 
                     Console.WriteLine($"Now Playing : {_queue[_index].Title}");
+                    _queue[_index].Rating++;
                    // System.Threading.Thread.Sleep(_queue[_index].Duration * 1000);//here we fake actually playing the song
 
             }
