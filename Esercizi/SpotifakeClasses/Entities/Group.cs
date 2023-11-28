@@ -15,7 +15,15 @@ namespace SpotifakeClasses.Entities
         private List<Album> _albums;
         private List<Song> _songs;
         private string _bio;
-       
+
+        public Group()
+        {
+            _name = String.Empty;
+            _members = new List<Artist>();
+            _albums = new List<Album>();
+            _songs = new List<Song>();  
+            _bio = String.Empty;
+        }
         public Group(String name,List<Artist> members, List<Album> albums, List<Song> songs, string bio)
         {
             _name = name;

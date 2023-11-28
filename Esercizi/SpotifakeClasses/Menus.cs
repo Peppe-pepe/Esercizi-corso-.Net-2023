@@ -4,15 +4,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace SpotifakeClasses
 {
-    public class Menu
+    public class Menus
     {
-        public Menu() { }
+        public Menus() { }
+        public static void StartMenu(User user) {
+            Console.Clear();
+            string menu = "╔═════════════════════════════════════════════╗" +
+                        "\n║          Please select a language           ║" +
+                        "\n║                  1.English                  ║" +
+                        "\n║                  2.Italian                  ║" +
+                        "\n╚═════════════════════════════════════════════╝";
+            Console.WriteLine(menu);
+            char check = Console.ReadKey().KeyChar;
+            switch(check){
+                case '1':
+                    user.Culture = CultureInfo.CreateSpecificCulture("en-US"); Menu1(user, new MediaComponent(), new Database());
+                    break;
+                case '2':
+                    user.Culture = CultureInfo.CreateSpecificCulture("it-IT");Menu1(user, new MediaComponent(), new Database());
+                    break;
+            }            
+
+        }
         public static void Menu1(User user,MediaComponent media,Database datas) {
             while (true)
             {
+                if (user.RemainingTime == 0)
+                {
+                    string menu = "╔═════════════════════════════════════════════╗" +
+                                "\n║  Premi A per riprodurre una canzone casuale ║" +
+                                "\n║  Premi E per uscire dal programma           ║" +
+                                "\n╚═════════════════════════════════════════════╝";
+                    Console.WriteLine(menu);
+
+                }
                 Console.WriteLine("Premi A per vedere le canzoni");
                 Console.WriteLine("Premi B per vedere le playist");
                 Console.WriteLine("Premi C per vedere le radio");

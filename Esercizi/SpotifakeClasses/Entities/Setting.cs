@@ -8,6 +8,7 @@ namespace SpotifakeClasses.Entities
         private bool _darkTheme;
         private string _equalizer;
         private bool _isPremium;
+        private bool _isGold;
         private int _nOfDevices;
 
         public Setting()
@@ -19,6 +20,7 @@ namespace SpotifakeClasses.Entities
             _darkTheme= false;
             _equalizer = "default";
             _isPremium= false;
+            _isGold= false;
             _nOfDevices=0;
         }
         public Setting(User user, bool darkTheme, string equalizer, bool isPremium, int nOfDevices)
@@ -34,6 +36,7 @@ namespace SpotifakeClasses.Entities
         public string Equalizer { get => _equalizer; private set => _equalizer = value; }
         public bool IsPremium { get => _isPremium; private set => _isPremium = value; }
         public int NOfDevices { get => _nOfDevices; private set => _nOfDevices = value; }
+        public bool IsGold { get => _isGold; set => _isGold = value; }
 
         public void AddDevice() {
             _nOfDevices++;

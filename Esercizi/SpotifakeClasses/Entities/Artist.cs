@@ -70,9 +70,10 @@ namespace SpotifakeClasses.Entities
                 _group.RemoveMember(this);
                 _group = null;
             }
-            catch(System.NullReferenceException)
+            catch(System.NullReferenceException ex)
             {
-                Console.WriteLine("l'artista non era in nessun gruppo");
+                List<Exception> list = new List<Exception> { ex }; 
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
             }
         }
 

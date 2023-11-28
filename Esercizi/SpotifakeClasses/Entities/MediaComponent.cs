@@ -59,9 +59,10 @@ namespace SpotifakeClasses.Entities
             {
                 Console.WriteLine($"Paused :{_queue[_index].Title}");
             }
-            catch (ArgumentOutOfRangeException)
+            catch (ArgumentOutOfRangeException ex)
             {
-                Console.WriteLine("Non esiste una coda al momento!");
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
             }
            
         }
@@ -72,8 +73,9 @@ namespace SpotifakeClasses.Entities
                 Console.WriteLine($"Stopped reproduction of :{_queue[_index].Title}");
                 _queue.Clear();
             }
-            catch (ArgumentOutOfRangeException) {
-                Console.WriteLine("Non esiste una coda al momento!");
+            catch (ArgumentOutOfRangeException ex) {
+               List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
             }
             
         }
@@ -106,9 +108,10 @@ namespace SpotifakeClasses.Entities
                    // System.Threading.Thread.Sleep(_queue[_index].Duration * 1000);//here we fake actually playing the song
 
             }
-            catch (System.NullReferenceException)
+            catch (System.NullReferenceException ex)
             {
-                Console.WriteLine($"la canzone numero {_index} è corrotta");
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); 
             }
 
         }

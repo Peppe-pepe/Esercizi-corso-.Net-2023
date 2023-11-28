@@ -1,11 +1,13 @@
 ﻿using SpotifakeClasses.Entities;
+using SpotifakeClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace SpotifakeClasses.Entities
 {
-    public class Database //we'll fake a database with this class
+    public class Database  //we'll fake a database with this class
     {
         private List<Artist> _artists;
         private List<Group> _groups;
@@ -13,6 +15,11 @@ namespace SpotifakeClasses.Entities
         public Database() { 
             _artists = new List<Artist>();  
             _groups = new List<Group>();    
+        }
+        public Database(List<String> artistFile,List<String> groupFile)
+        {
+            _artists = FileHandler<Artist>.CreateObject(artistFile);
+            _groups = FileHandler<Group>.CreateObject(groupFile);
         }
         public void ShowArtists()
         {
@@ -77,7 +84,8 @@ namespace SpotifakeClasses.Entities
             }
             catch (NullReferenceException ex)
             {
-                Console.WriteLine($"Non ci sono Artisti o/e gruppi {ex.Message}");
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list);
             }
         }
         public Song SelectSong(int id) //returns the first song with the desired id
@@ -91,8 +99,8 @@ namespace SpotifakeClasses.Entities
                         return song;
                 }
             } catch (NullReferenceException ex) {
-                Console.WriteLine($"Non ci sono Artisti {ex.Message}");
-                return null;
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); 
             }
             try
             {
@@ -106,7 +114,8 @@ namespace SpotifakeClasses.Entities
                 return null;
             }
             catch(NullReferenceException ex) {
-                Console.WriteLine($"Non ci sono Gruppi {ex.Message}");
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
                 return null;
             }
                
@@ -154,13 +163,21 @@ namespace SpotifakeClasses.Entities
         public void ShowRadios()
         {
             try { _user.ShowRadios(); }
-            catch (NullReferenceException ex) { Console.WriteLine(ex.Message); return; }    
+            catch (NullReferenceException ex)
+            {
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
+            }    
                 
         }
         public void ShowPlaylists()
         {
             try { _user.ShowPlaylists(); }
-            catch (NullReferenceException ex) { Console.WriteLine(ex.Message); return; }
+            catch (NullReferenceException ex)
+            {
+                List<Exception> list = new List<Exception> { ex };
+                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
+            }
 
         }
         private void ShowGroup(Group g)
