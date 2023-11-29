@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIleSystemExercise", "FIleS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifakeClasses", "SpotifakeClasses\SpotifakeClasses.csproj", "{75F40768-CDBA-4EFA-8493-BD033220D610}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyExercise", "ProxyExercise\ProxyExercise.csproj", "{99034A47-A617-44E4-A24F-FC5333F1CD8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{75F40768-CDBA-4EFA-8493-BD033220D610}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75F40768-CDBA-4EFA-8493-BD033220D610}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75F40768-CDBA-4EFA-8493-BD033220D610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99034A47-A617-44E4-A24F-FC5333F1CD8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99034A47-A617-44E4-A24F-FC5333F1CD8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99034A47-A617-44E4-A24F-FC5333F1CD8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99034A47-A617-44E4-A24F-FC5333F1CD8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
