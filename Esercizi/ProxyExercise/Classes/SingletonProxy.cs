@@ -34,10 +34,8 @@ namespace ProxyExercise.Classes
                 return instance;
             }
         }
-        public string ServerRequest() {
-            Random gen = new Random();
-            int randomIndex = gen.Next(serversIP.Count);
-            return serversIP[randomIndex];
+        public string ServerRequest(int id) {
+            return serversIP[id];
         }
     }
 }
