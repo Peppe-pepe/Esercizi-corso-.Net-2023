@@ -1,4 +1,5 @@
 ﻿using SpotifakeClasses.Entities;
+using SpotifakeClasses.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace SpotifakeClasses.Entities
 {
-       public class Artist : Person
+       public class Artist : Person,IRating
     {
         private string _artName;
         private List<Album> _albums;
         private List<Song> _songs;
-        private Group _group;
         private string _bio;
+        private decimal _rating;
 
         public Artist()
         {
@@ -59,30 +60,13 @@ namespace SpotifakeClasses.Entities
         { //used for feat albums
             _albums.Add(a);
         }
-            public void JoinGroup(Group group)
-        {
-            group.AddMember(this);
-            _group = group;
-        }
-        public void LeaveGroup() {
-            try
-            {
-                _group.RemoveMember(this);
-                _group = null;
-            }
-            catch(System.NullReferenceException ex)
-            {
-                List<Exception> list = new List<Exception> { ex }; 
-                FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
-            }
-        }
 
         public void ShowSongs()
         {
             foreach (Song song in _songs)
             {
                 if (song != null)
-                    Console.WriteLine($"{song.Id}.{song.Title}");
+                    Console.WriteLine(song.ToString());
             }
         }
         public void ShowAlbums()
@@ -93,11 +77,18 @@ namespace SpotifakeClasses.Entities
                     Console.WriteLine($"{album.Title}");
             }
         }
+        public void CalcRating()
+        {
+            decimal rating = 0;
+            foreach (Song song in _songs)
+                rating += song.Rating;
+            _rating = rating / _songs.Count;
+        }
         public string ArtName { get => _artName; }
         public List<Album> Albums { get => _albums; }
         public List<Song> Songs { get => _songs; }
-        public Group Group { get => _group; }
         public string Bio { get => _bio; }
+        public decimal Rating { get => _rating; set => _rating = value; }
 
         public override string ToString()
         {

@@ -58,14 +58,16 @@ namespace SpotifakeClasses
                 Console.WriteLine("Premi A per vedere le canzoni");
                 Console.WriteLine("Premi B per vedere le playist");
                 Console.WriteLine("Premi C per vedere le radio");
+                Console.WriteLine("Premi D per vedere gli artisti");
                 Console.WriteLine("Premi E per uscire");
                 check = Console.ReadKey().KeyChar.ToString();
                 Console.WriteLine();
                 switch (check)
                 {
-                    case "A": datas.ShowSongs(); Menu2(user, media, datas); break;
-                    case "B": datas.ShowPlaylists(); Menu3(user, media, datas); break;
-                    case "C": datas.ShowRadios(); Menu4(user, media, datas); break;
+                    case "A": datas.ShowTop5<Song, decimal>(song => song.Rating); ; Menu2(user, media, datas); break;
+                    case "B": datas.ShowTop5<Playlist, decimal>(playlist => playlist.Rating); ; Menu3(user, media, datas); break;
+                    case "C": datas.ShowTop5<Radio, decimal>(radio => radio.Rating); Menu4(user, media, datas); break;
+                    case "D":datas.ShowTop5<Artist,decimal>(artist => artist.Rating); break;
                     case "E": Environment.Exit(0); break;
                 }
             }

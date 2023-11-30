@@ -4,77 +4,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using SpotifakeClasses.Interfaces;
 
 namespace SpotifakeClasses.Entities
 {
     public class Database  //we'll fake a database with this class
     {
         private List<Artist> _artists;
-        private List<Group> _groups;
+        private List<Album> _albums;
         private List<Song> _songs;
         User _user;
-        public Database() { 
-            _artists = new List<Artist>();  
-            _groups = new List<Group>();    
-            _songs = new List<Song>();  
+        public Database()
+        {
+            _artists = new List<Artist>();
+            _albums = new List<Album>();
+            _songs = new List<Song>();
         }
-        public Database(List<String> artistFile,List<String> groupFile)
+        public Database(List<String> artistFile, List<String> albumFile)
         {
             _artists = FileHandler<Artist>.CreateObject(artistFile);
-            _groups = FileHandler<Group>.CreateObject(groupFile);
+            _albums = FileHandler<Album>.CreateObject(albumFile);
         }
         public void ShowArtists()
         {
-           foreach(Artist artist in _artists) { 
+            foreach (Artist artist in _artists)
                 ShowArtist(artist);
-            }
-        }
-        public void ShowGroups() {
-            foreach (Group group in _groups)
-            {
-                ShowGroup(group);
-            }
-        }
-        public void ShowSongs()
-        {
-            foreach(Artist artist in _artists)
-            {
-                if(artist != null)
-                    artist.ShowSongs();
-            }
-            foreach (Group group in _groups)
-            {
-                if (group != null)
-                    group.ShowSongs();
-            }
         }
         public void ShowAlbums()
         {
-            foreach (Artist artist in _artists)
-            {
-                if(artist!=null)
-                    artist.ShowAlbums();
-            }
-            foreach (Group group in _groups)
-            {
-                if(group!=null)
-                    group.ShowAlbums();
-            }
+            foreach (Album album in _albums)
+                ShowAlbum(album);
+
         }
-        public void SearchSong(String s) {
-            List<Song> foundSong=new List<Song>();
+        public void ShowSongs()
+        {
+            foreach (Artist artist in _artists)
+                if (artist != null)
+                    artist.ShowSongs();
+
+            foreach (Album album in _albums)
+                if (album != null)
+                    album.ShowSongs();
+
+        }
+
+        public void SearchSong(String s)
+        {
+            List<Song> foundSong = new List<Song>();
             try
             {
-              foundSong = foundSong.Concat(_songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
+                foundSong = foundSong.Concat(_songs.Where(song => song.Title.Equals(s)).ToList()).ToList();
                 foreach (Song song in foundSong)
-                {
-                    Console.WriteLine($"{song.Id}");
-                    Console.WriteLine($"{song.Title}");
-                    Console.WriteLine($"{song.Genre}");
-                    Console.WriteLine($"{song.Duration}");
-                    Console.WriteLine($"{song.ReleaseDate}");
-
-                }
+                    song.ToString();
             }
             catch (NullReferenceException ex)
             {
@@ -84,23 +65,27 @@ namespace SpotifakeClasses.Entities
         }
         public Song SelectSong(int id) //returns the first song with the desired id
         {
-            Song song=null;
-            try {
+            Song song = null;
+            try
+            {
 
-                    song= _songs[id-1];
+                song = _songs[id - 1];
                 return song;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 List<Exception> list = new List<Exception> { ex };
                 FileHandler<Exception>.WriteOnFile("Errors.txt", list);
                 return null;
             }
-               
+
         }
 
-        public Playlist SelectPlaylist( int id) {
-            foreach(Playlist list in _user.Playlists)
+        public Playlist SelectPlaylist(int id)
+        {
+            foreach (Playlist list in _user.Playlists)
             {
-                if(list.Id.Equals(id)) 
+                if (list.Id.Equals(id))
                     return list;
             }
             return null;
@@ -118,32 +103,41 @@ namespace SpotifakeClasses.Entities
 
         public void AddArtist(Artist a)
         {
-            _artists.Add(a); 
-            foreach(Song song in a.Songs)
+            _artists.Add(a);
+            foreach (Song song in a.Songs)
             {
                 _songs.Add(song);
                 song.Id = _songs.Count();
             }
         }
-        public void setUser(User u)
+        public void User(User u)
         {
-            _user= u;
+            _user = u;
         }
-        public void AddGroup(Group g)
+        public void AddAlbum(Album g)
         {
-            _groups.Add(g);
+            _albums.Add(g);
             foreach (Song song in g.Songs)
             {
                 _songs.Add(song);
                 song.Id = _songs.Count();
             }
         }
-        private void ShowArtist(Artist a) {
+        private void ShowArtist(Artist a)
+        {
 
             if (a == null)
                 return;
             Console.WriteLine(a.ArtName);
             a.ShowAlbums();
+            a.ShowSongs();
+        }
+
+        private void ShowAlbum(Album a)
+        {
+            if (a == null)
+                return;
+            Console.WriteLine(a.Title);
             a.ShowSongs();
         }
         public void ShowRadios()
@@ -153,8 +147,8 @@ namespace SpotifakeClasses.Entities
             {
                 List<Exception> list = new List<Exception> { ex };
                 FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
-            }    
-                
+            }
+
         }
         public void ShowPlaylists()
         {
@@ -166,23 +160,15 @@ namespace SpotifakeClasses.Entities
             }
 
         }
-        private void ShowGroup(Group g)
+
+        public int TotalSongs()
         {
-
-            if (g == null)
-                return;
-            Console.WriteLine(g.Name);
-            g.ShowAlbums();
-            g.ShowSongs();
-        }
-
-       public int TotalSongs() {
-            int count=0;
+            int count = 0;
             try
             {
                 foreach (Artist artist in _artists)
-                {   
-                     count +=artist.Songs.Count;
+                {
+                    count += artist.Songs.Count;
                 }
             }
             catch (NullReferenceException ex)
@@ -192,9 +178,9 @@ namespace SpotifakeClasses.Entities
             }
             try
             {
-                foreach (Group group in _groups)
+                foreach (Album album in _albums)
                 {
-                    count += group.Songs.Count;
+                    count += album.Songs.Count;
                 }
             }
             catch (NullReferenceException ex)
@@ -203,6 +189,43 @@ namespace SpotifakeClasses.Entities
                 FileHandler<Exception>.WriteOnFile("Errors.txt", list); ;
             }
             return count;
+        }
+        public void ShowTop5<T, TKey>(Func<T, TKey> selector) where T : IRating
+        {
+            List<T> top5 = _GetList<T>().GroupBy(item=> selector(item)).OrderByDescending(group=> group.Key)
+                .SelectMany(group=>group.Take(5)).ToList();
+            foreach (var item in top5)
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+
+        private List<T> _GetList<T>()
+        {
+            if (typeof(T)==typeof( Artist))
+            {
+                return _artists.Cast<T>().ToList();
+            }
+            if (typeof(T)==typeof( Album))
+            {
+                return _albums.Cast<T>().ToList();
+            }
+            if (typeof(T)==typeof(Song))
+            {
+                return _songs.Cast<T>().ToList();
+            }
+            if (typeof(T) == typeof(Playlist))
+            {
+                return  _user.Playlists.Cast<T>().ToList();
+            }
+            if (typeof(T) == typeof(Radio))
+            {
+                return _user.FavouriteRadios.Cast<T>().ToList();
+            }
+            else
+            {
+                throw new ArgumentException("Unsupported type");
+            }
         }
     }
 }
